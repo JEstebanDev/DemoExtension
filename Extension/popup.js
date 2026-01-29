@@ -41,21 +41,12 @@ function initPopup() {
 function setupPopup() {
     // Verificar que XLSX esté disponible
     if (typeof XLSX === 'undefined') {
-        const status = document.getElementById('status');
-        if (status) {
-            status.textContent = 'Error: No se pudo cargar la librería XLSX. Por favor recarga la extensión.';
-            status.className = 'status error';
-            status.classList.remove('hidden');
-        }
         console.error('XLSX no está disponible');
         return;
     }
 
     const fileInput = document.getElementById('excelFile');
     const selectFileBtn = document.getElementById('selectFileBtn');
-    const status = document.getElementById('status');
-    const dataPreview = document.getElementById('dataPreview');
-    const dataList = document.getElementById('dataList');
     const fillFormBtn = document.getElementById('fillFormBtn');
 
     let excelData = null;
@@ -70,37 +61,38 @@ function setupPopup() {
         const file = e.target.files[0];
         if (!file) return;
 
-        if (!file.name.match(/\.(xlsx|xls)$/)) {
-            showStatus('Por favor selecciona un archivo Excel (.xlsx o .xls)', 'error');
+        if (!file.name.match(/\.(xlsx|xls|xlsm)$/i)) {
+            console.error('Por favor selecciona un archivo Excel (.xlsx, .xls o .xlsm)');
             return;
         }
 
-        showStatus('Leyendo archivo...', 'loading');
-        dataPreview.classList.add('hidden');
+        // Verificar que ExcelReader esté disponible
+        if (typeof ExcelReader === 'undefined') {
+            console.error('Error: ExcelReader no está disponible. Asegúrate de que ExcelReader.js esté cargado.');
+            return;
+        }
+
         fillFormBtn.classList.add('hidden');
 
         try {
-            const data = await readExcelFile(file);
+            const reader = new ExcelReader(null, 'example_data.json');
+            const data = await reader.readFromFile(file, 'example_data.json');
+            
             excelData = data;
             
-            if (data && data.length > 0) {
-                displayData(data[0]); // Mostrar primera fila
-                dataPreview.classList.remove('hidden');
+            if (data && typeof data === 'object') {
                 fillFormBtn.classList.remove('hidden');
-                showStatus(`Archivo leído correctamente. ${data.length} registro(s) encontrado(s).`, 'success');
-            } else {
-                showStatus('No se encontraron datos en el archivo Excel', 'error');
             }
+
+            console.log('✅ Datos extraídos exitosamente:', data);
         } catch (error) {
-            console.error('Error al leer archivo:', error);
-            showStatus('Error al leer el archivo: ' + error.message, 'error');
+            console.error('Error al leer el Excel:', error);
         }
     });
-
-    // Rellenar formulario
+    // Manejar click en botón "Rellenar Formulario"
     fillFormBtn.addEventListener('click', async () => {
-        if (!excelData || excelData.length === 0) {
-            showStatus('No hay datos para rellenar', 'error');
+        if (!excelData) {
+            console.error('Error: No hay datos cargados. Por favor selecciona un archivo Excel primero.');
             return;
         }
 
@@ -108,138 +100,81 @@ function setupPopup() {
             // Obtener la pestaña activa
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
             
-            // Enviar datos al content script
-            const response = await chrome.tabs.sendMessage(tab.id, {
-                action: 'fillForm',
-                data: excelData[0] // Usar primera fila
-            });
-
-            // Verificar la respuesta del content script
-            if (response && response.success) {
-                showSuccessMessage();
-            } else if (response && response.error) {
-                // Mostrar el error específico del content script
-                showStatus(response.error, 'error');
-            } else {
-                showSuccessMessage();
+            if (!tab) {
+                console.error('Error: No se pudo encontrar la pestaña activa');
+                return;
             }
+
+            // Asegurarse de que el content script esté inyectado
+            try {
+                await ensureContentScriptLoaded(tab.id);
+            } catch (error) {
+                console.error('Error al inyectar content script:', error);
+                return;
+            }
+
+            // Enviar mensaje al content script con los datos
+            chrome.tabs.sendMessage(
+                tab.id,
+                {
+                    action: 'fillForm',
+                    data: excelData
+                },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        console.error('Error al enviar mensaje:', chrome.runtime.lastError);
+                        return;
+                    }
+
+                    if (response && response.success) {
+                        // Mostrar mensaje de éxito animado
+                        const successMessage = document.getElementById('successMessage');
+                        if (successMessage) {
+                            successMessage.classList.remove('hidden');
+                            setTimeout(() => {
+                                successMessage.classList.add('hidden');
+                            }, 5000);
+                        }
+                        console.log('✅ Formulario completado exitosamente');
+                    } else {
+                        const errorMsg = response && response.error ? response.error : 'Error desconocido';
+                        console.error('Error al completar formulario: ' + errorMsg);
+                    }
+                }
+            );
         } catch (error) {
             console.error('Error al rellenar formulario:', error);
-            // Si el error es porque no hay content script inyectado
-            if (error.message && error.message.includes('Could not establish connection')) {
-                showStatus('Error: No se pudo conectar con la página. Asegúrate de estar en la página correcta con el formulario.', 'error');
-            } else {
-                showStatus('Error al rellenar formulario: ' + error.message, 'error');
-            }
         }
     });
 
-    function readExcelFile(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
+    /**
+     * Asegura que el content script esté cargado en la pestaña
+     * Si no está, lo inyecta manualmente
+     */
+    async function ensureContentScriptLoaded(tabId) {
+        try {
+            // Intentar hacer ping al content script
+            const response = await chrome.tabs.sendMessage(tabId, { action: 'ping' });
             
-            reader.onload = (e) => {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    
-                    // Obtener la primera hoja
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
-                    
-                    // Convertir a JSON
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
-                    
-                    // Mapear columnas (soporta diferentes nombres de columnas)
-                    const mappedData = jsonData.map(row => {
-                        const mapped = {};
-                        
-                        // Buscar columnas por diferentes nombres posibles
-                        mapped.nombre = findColumnValue(row, ['nombre', 'Nombre', 'NOMBRE', 'name', 'Name']);
-                        mapped.apellido = findColumnValue(row, ['apellido', 'Apellido', 'APELLIDO', 'lastname', 'Lastname', 'last name']);
-                        mapped.edad = findColumnValue(row, ['edad', 'Edad', 'EDAD', 'age', 'Age']);
-                        mapped.ciudad = findColumnValue(row, ['ciudad', 'Ciudad', 'CIUDAD', 'city', 'City']);
-                        mapped.experiencia = findColumnValue(row, ['años de experiencia', 'Años de Experiencia', 'AÑOS DE EXPERIENCIA', 'experiencia', 'Experiencia', 'years of experience', 'years']);
-                        mapped.rol = findColumnValue(row, ['rol', 'Rol', 'ROL', 'role', 'Role']);
-                        
-                        return mapped;
-                    });
-                    
-                    resolve(mappedData);
-                } catch (error) {
-                    reject(error);
-                }
-            };
-            
-            reader.onerror = (error) => {
-                reject(error);
-            };
-            
-            reader.readAsArrayBuffer(file);
-        });
-    }
-
-    function findColumnValue(row, possibleNames) {
-        for (const name of possibleNames) {
-            if (row[name] !== undefined && row[name] !== null && row[name] !== '') {
-                return row[name];
+            if (response && response.ready) {
+                console.log('Content script ya está cargado');
+                return;
             }
+        } catch (error) {
+            // Si falla, el content script no está cargado, lo inyectamos
+            console.log('Content script no detectado, inyectando...');
         }
-        return null;
-    }
 
-    function displayData(data) {
-        dataList.innerHTML = '';
-        const fields = [
-            { label: 'Nombre', key: 'nombre' },
-            { label: 'Apellido', key: 'apellido' },
-            { label: 'Edad', key: 'edad' },
-            { label: 'Ciudad', key: 'ciudad' },
-            { label: 'Años de Experiencia', key: 'experiencia' },
-            { label: 'Rol', key: 'rol' }
-        ];
-
-        fields.forEach(field => {
-            const item = document.createElement('div');
-            item.className = 'data-item';
-            const value = data[field.key] || 'N/A';
-            item.innerHTML = `<strong>${field.label}:</strong> <span>${value}</span>`;
-            dataList.appendChild(item);
+        // Inyectar el content script manualmente
+        await chrome.scripting.executeScript({
+            target: { tabId: tabId },
+            files: ['content.js']
         });
-    }
 
-    function showStatus(message, type) {
-        status.textContent = message;
-        status.className = `status ${type}`;
-        status.classList.remove('hidden');
-    }
-
-    function showSuccessMessage() {
-        // Ocultar todos los elementos excepto el mensaje de éxito
-        const fileInputContainer = document.querySelector('.file-input-container');
-        const statusElement = document.getElementById('status');
-        const dataPreview = document.getElementById('dataPreview');
-        const successMessage = document.getElementById('successMessage');
+        // Esperar un momento para que se inicialice
+        await new Promise(resolve => setTimeout(resolve, 500));
         
-        if (fileInputContainer) fileInputContainer.classList.add('hidden');
-        if (statusElement) statusElement.classList.add('hidden');
-        if (dataPreview) dataPreview.classList.add('hidden');
-        
-        // Mostrar mensaje de éxito
-        if (successMessage) {
-            successMessage.classList.remove('hidden');
-            
-            // Cerrar popup después de 3 segundos para que el usuario vea el mensaje
-            setTimeout(() => {
-                window.close();
-            }, 3000);
-        } else {
-            // Fallback si no existe el elemento
-            showStatus('Formulario rellenado correctamente', 'success');
-            setTimeout(() => {
-                window.close();
-            }, 1000);
-        }
+        console.log('Content script inyectado exitosamente');
     }
 }
 

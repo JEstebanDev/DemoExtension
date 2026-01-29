@@ -1,0 +1,424 @@
+/* Estilos básicos para el diálogo y stepper */
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.dialog-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+}
+
+/* Estilos del diálogo */
+.mat-mdc-dialog-container {
+    display: block;
+    padding: 24px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+    pointer-events: auto;
+}
+
+.mdc-dialog__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    pointer-events: auto;
+}
+
+.mat-mdc-dialog-surface {
+    display: block;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+    background: white;
+    color: rgba(0,0,0,.87);
+    pointer-events: auto;
+}
+
+/* Estilos del stepper */
+.mat-horizontal-stepper-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-horizontal-stepper-header-container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.mat-step-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.mat-step-header:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.mat-step-header.mat-step-header-selected {
+    background-color: rgba(63,81,181,.08);
+}
+
+.mat-step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    background-color: rgba(0,0,0,.38);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.mat-step-icon-selected {
+    background-color: #3f51b5;
+}
+
+.mat-step-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,.54);
+}
+
+.mat-step-label-active {
+    color: rgba(0,0,0,.87);
+}
+
+.mat-step-label-selected {
+    color: #3f51b5;
+    font-weight: 500;
+}
+
+.mat-stepper-horizontal-line {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(0,0,0,.12);
+    margin: 0 8px;
+}
+
+/* Contenido del stepper */
+.mat-horizontal-content-container {
+    overflow: hidden;
+    position: relative;
+    pointer-events: auto;
+}
+
+.mat-horizontal-stepper-content {
+    overflow: hidden;
+    outline: 0;
+    box-sizing: border-box;
+    padding: 24px;
+    pointer-events: auto;
+}
+
+.mat-horizontal-stepper-content-active {
+    visibility: visible !important;
+    transform: none !important;
+    position: relative !important;
+    pointer-events: auto !important;
+    display: block !important;
+}
+
+.mat-horizontal-stepper-content-inactive {
+    visibility: hidden !important;
+    transform: translate3d(100%, 0px, 0px) !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+/* Botones del stepper */
+.mat-stepper-next,
+.mat-stepper-previous {
+    margin: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    pointer-events: auto;
+    z-index: 10;
+    position: relative;
+}
+
+.bc-button-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.bc-button-secondary {
+    background-color: #f5f5f5;
+    color: rgba(0,0,0,.87);
+}
+
+.bc-button-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+.bc-button-primary {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.bc-button-primary:hover {
+    background-color: #303f9f;
+}
+
+/* Estilos de inputs */
+.bc-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    pointer-events: auto;
+    cursor: text;
+}
+
+.bc-input:focus {
+    outline: none;
+    border-color: #3f51b5;
+}
+
+.bc-form-field {
+    margin-bottom: 16px;
+}
+
+.bc-input-span-info {
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    margin-top: 4px;
+    display: block;
+}
+
+.bc-text-brand-complementary-01 {
+    color: #f44336;
+}
+
+/* Select inputs */
+.bc-input-select {
+    position: relative;
+}
+
+.bc-input-select-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bc-input-select-content.show {
+    display: block;
+}
+
+.bc-input-select-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    pointer-events: auto;
+}
+
+.bc-input-select-item:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.bc-input-select-label {
+    display: block;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    margin-bottom: 4px;
+}
+
+.bc-input-select-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-style: normal;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+/* Material form fields */
+.mat-mdc-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+    pointer-events: auto;
+}
+
+.mat-mdc-text-field-wrapper {
+    position: relative;
+}
+
+.mat-mdc-form-field-infix {
+    padding: 8px 0;
+}
+
+.mdc-text-field__input {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    pointer-events: auto;
+    cursor: text;
+}
+
+.mdc-text-field__input:focus {
+    border-bottom-color: #3f51b5;
+}
+
+.mdc-floating-label {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-size: 14px;
+    color: rgba(0,0,0,.6);
+    pointer-events: none;
+    transition: all 0.2s;
+}
+
+.mdc-floating-label--float-above {
+    top: -16px;
+    font-size: 12px;
+    color: #3f51b5;
+}
+
+/* Chip grid */
+.mat-mdc-chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 0;
+    pointer-events: auto;
+}
+
+.mat-mdc-chip-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    padding: 4px 0;
+    min-width: 150px;
+    pointer-events: auto;
+    cursor: text;
+}
+
+/* Utilidades */
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.mensaje {
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+    margin-top: 16px;
+    font-weight: normal;
+}
+
+/* Botón cerrar y botón abrir */
+.bc-fab-button-mini {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bc-fab-button-mini:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+/* Botones de abrir diálogo - posicionamiento */
+body > button.bc-fab-button-mini {
+    margin-bottom: 20px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilos para tooltip trigger */
+.mat-mdc-tooltip-trigger {
+    position: relative;
+}
+
+.mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mat-step-header {
+        padding: 16px 8px;
+    }
+    
+    .mat-step-label {
+        font-size: 12px;
+    }
+}
+

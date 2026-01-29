@@ -1,0 +1,58 @@
+{
+  "nombre": "B2",
+  "primer_apellido": "B2",
+  "segundo_apellido": "B2",
+  "ciudad": "B3",
+  "profesion": "B4",
+  "fecha_nacimiento": "B5",
+  "cedula": "B6",
+  "nivel_seniority": "B7",
+  "anos_experiencia": "B9",
+  "experiencia": [
+    {
+      "compania": "A12",
+      "cargo": "B12",
+      "actividades": "C12",
+      "periodo_inicio": "D12",
+      "periodo_fin": "D12"
+    },
+    {
+      "compania": "A13",
+      "cargo": "B13",
+      "actividades": "C13",
+      "periodo_inicio": "D13",
+      "periodo_fin": "D13"
+    },
+    {
+      "compania": "A14",
+      "cargo": "B14",
+      "actividades": "C14",
+      "periodo_inicio": "D14",
+      "periodo_fin": "D14"
+    }
+  ],
+  "lenguajes_programacion": "B16",
+  "bases_datos": "B17",
+  "aplicaciones": "B18",
+  "frameworks": "B19",
+  "plataformas": "B20",
+  "herramientas": "B21",
+  "otros": "B22",
+  "cursos_certificaciones": [
+    {
+      "institucion": "A25",
+      "curso_certificacion": "B25",
+      "fecha_obtencion": "D25"
+    },
+    {
+      "institucion": "A26",
+      "curso_certificacion": "B26",
+      "fecha_obtencion": "D26"
+    },
+    {
+      "institucion": "A27",
+      "curso_certificacion": "B27",
+      "fecha_obtencion": "D27"
+    }
+  ]
+}

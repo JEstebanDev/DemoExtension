@@ -22,6 +22,15 @@
   ],
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "example_data.xlsm",
+        "example_data.json"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
 

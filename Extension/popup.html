@@ -22,7 +22,7 @@
         </div>
         
         <div class="file-input-container">
-            <input type="file" id="excelFile" accept=".xlsx,.xls" style="display: none;">
+            <input type="file" id="excelFile" accept=".xlsx,.xls,.xlsm" style="display: none;">
             <button id="selectFileBtn" class="btn-primary">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -31,20 +31,7 @@
                 </svg>
                 Seleccionar Archivo Excel
             </button>
-        </div>
-
-        <div id="status" class="status hidden"></div>
-
-        <div id="dataPreview" class="data-preview hidden">
-            <h3>
-                <svg class="icon-small" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Datos leídos correctamente
-            </h3>
-            <div id="dataList" class="data-list"></div>
-            <button id="fillFormBtn" class="btn-success hidden">
+            <button id="fillFormBtn" class="btn-success hidden" style="margin-top: 15px;">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -69,6 +56,7 @@
     </div>
 
     <script src="xlsx.full.min.js"></script>
+    <script src="ExcelReader.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>
