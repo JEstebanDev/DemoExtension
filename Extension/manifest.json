@@ -26,7 +26,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "example_data.xlsm",
+        "example_data.xls",
         "example_data.json"
       ],
       "matches": ["<all_urls>"]

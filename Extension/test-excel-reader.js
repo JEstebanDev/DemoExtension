@@ -11,7 +11,7 @@ async function testExcelReader() {
     try {
         // Crear instancia de ExcelReader
         const reader = new ExcelReader(
-            'example_data.xlsm',  // Ruta al archivo Excel
+            'example_data.xls',  // Ruta al archivo Excel
             'example_data.json'   // Ruta al archivo de mapeo JSON
         );
 

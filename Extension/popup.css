@@ -245,6 +245,50 @@ h3 {
     flex: 1;
 }
 
+/* Mensaje de error de validación */
+.error-message {
+    padding: 20px;
+    text-align: center;
+    animation: successPopIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    border-top: 3px solid #e53e3e;
+}
+
+.error-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.error-icon {
+    width: 52px;
+    height: 52px;
+    color: #e53e3e;
+    filter: drop-shadow(0 3px 6px rgba(229, 62, 62, 0.3));
+}
+
+.error-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #c53030;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+
+.error-text {
+    font-size: 13px;
+    color: #742a2a;
+    line-height: 1.8;
+    white-space: pre-line;
+    text-align: left;
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 8px;
+}
+
 /* Mensaje de éxito mejorado */
 .success-message {
     padding: 30px 20px;

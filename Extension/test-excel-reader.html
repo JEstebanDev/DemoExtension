@@ -101,7 +101,7 @@
             <h3>Instrucciones:</h3>
             <ol>
                 <li>Abre esta página desde la extensión de Chrome (chrome-extension://[ID]/test-excel-reader.html)</li>
-                <li>Asegúrate de que los archivos <code>example_data.xlsm</code> y <code>example_data.json</code> estén en la carpeta Extension</li>
+                <li>Asegúrate de que los archivos <code>example_data.xls</code> y <code>example_data.json</code> estén en la carpeta Extension</li>
                 <li>Haz clic en el botón "Leer Excel" para ejecutar la clase</li>
                 <li>Revisa la consola del navegador (F12) para ver los resultados detallados</li>
             </ol>
@@ -137,7 +137,7 @@
             try {
                 // Crear instancia de ExcelReader
                 const reader = new ExcelReader(
-                    'example_data.xlsm',  // Ruta al archivo Excel
+                    'example_data.xls',  // Ruta al archivo Excel
                     'example_data.json'   // Ruta al archivo de mapeo JSON
                 );
 

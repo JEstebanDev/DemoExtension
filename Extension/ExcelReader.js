@@ -9,6 +9,7 @@ class ExcelReader {
 
     static ALLOWED_LANGUAGES = [
         "Java SE",
+        "Java",
         "Python",
         "GO",
         "C# (.NET Framework)",
@@ -28,7 +29,7 @@ class ExcelReader {
         "SQL Server",
         "PostgreSQL",
         "MySQL",
-        "AWS DynamoDB",
+        "DynamoDB",
         "DB2",
         "IBM Cloudant",
         "MongoDB",
@@ -55,7 +56,8 @@ class ExcelReader {
         "Angular",
         "Redux",
         "Universal (SSR)",
-        "Next.js (SSR)"
+        "Next.js (SSR)",
+        "Django"
     ];
 
     static ALLOWED_PLATFORMS = [
@@ -106,11 +108,14 @@ class ExcelReader {
         "Sterling",
         "Caching",
         "LocalStorage",
+        "AMQP",
         "Service Worker",
         "PWA",
         "DOM y Browser Engine",
         "Flex",
-        "DDD"
+        "DDD",
+        "SOLID",
+        "Pruebas unitarias",
     ];
 
     /**
@@ -994,6 +999,39 @@ class ExcelReader {
     }
 
     /**
+     * Valida que los campos obligatorios estén presentes y no estén vacíos.
+     * Lanza un Error con la lista de campos faltantes si la validación falla.
+     * @param {Object} data - Datos formateados extraídos del Excel
+     * @throws {Error} Si algún campo obligatorio falta o está vacío
+     */
+    validateRequiredFields(data) {
+        const REQUIRED_FIELDS = [
+            { field: 'nombre',           label: 'Nombre' },
+            { field: 'departamento',     label: 'Departamento' },
+            { field: 'ciudad',           label: 'Ciudad' },
+            { field: 'cedula',           label: 'Cédula' },
+            { field: 'email',            label: 'Email' },
+            { field: 'seniority_nivel',  label: 'Nivel de Seniority (seniority_nivel)' },
+            { field: 'nivel_seniority',  label: 'Nivel Seniority (Junior / Semi-Senior / Senior)' },
+            { field: 'anos_experiencia', label: 'Años de Experiencia' },
+        ];
+
+        const missingFields = REQUIRED_FIELDS
+            .filter(({ field }) => {
+                const value = data[field];
+                return value === null || value === undefined || String(value).trim() === '';
+            })
+            .map(({ label }) => label);
+
+        if (missingFields.length > 0) {
+            const fieldList = missingFields.map(f => `• ${f}`).join('\n');
+            throw new Error(
+                `Por favor rellene los campos obligatorios en el Excel:\n${fieldList}`
+            );
+        }
+    }
+
+    /**
      * Lee datos desde un archivo File seleccionado por el usuario
      * @param {File} file - Archivo Excel seleccionado (.xlsx o .xlsm)
      * @param {string} mappingPath - Ruta al archivo JSON de mapeo
@@ -1029,6 +1067,9 @@ class ExcelReader {
             // Formatear y validar los datos extraídos
             const formattedData = this.formatExtractedData(extractedData);
 
+            // Validar campos obligatorios
+            this.validateRequiredFields(formattedData);
+
             // Mostrar el resultado en console.log con formato legible
             console.log('=== Datos extraídos del Excel (formateados) ===');
             console.log(JSON.stringify(formattedData, null, 2));
@@ -1063,6 +1104,9 @@ class ExcelReader {
 
             // Formatear y validar los datos extraídos
             const formattedData = this.formatExtractedData(extractedData);
+
+            // Validar campos obligatorios
+            this.validateRequiredFields(formattedData);
 
             // Mostrar el resultado en console.log con formato legible
             console.log('=== Datos extraídos del Excel (formateados) ===');

@@ -140,8 +140,14 @@ async function fillStep1InfoBasica(data) {
     console.warn("  ⚠️  data.cedula está vacío o es null");
   }
 
-  // E-mail (campo no presente en JSON, se puede dejar vacío o generar)
-  // await fillInputByPlaceholder('E-mail', '');
+  // E-mail
+  if (data.email) {
+    console.log("  Llenando E-mail:", data.email);
+    await fillInputByPlaceholder("E-mail", data.email);
+    await delay(300);
+  } else {
+    console.warn("  ⚠️  data.email está vacío o es null");
+  }
 
   // Años de experiencia
   if (data.anos_experiencia) {
@@ -160,8 +166,14 @@ async function fillStep1InfoBasica(data) {
   await fillBcInputSelect("countrySelect", "Colombia");
   await delay(300);
 
-  // Departamento (no presente en JSON, se omite)
-  // await fillMatSelectByLabel('Departamento', '');
+  // Departamento
+  if (data.departamento) {
+    console.log("  Llenando Departamento:", data.departamento);
+    await fillBcInputSelect("stateSelect", data.departamento);
+    await delay(300);
+  } else {
+    console.warn("  ⚠️  data.departamento está vacío o es null");
+  }
 
   // Ciudad
   if (data.ciudad) {

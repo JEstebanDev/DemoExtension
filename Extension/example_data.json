@@ -2,57 +2,60 @@
   "nombre": "B2",
   "primer_apellido": "B2",
   "segundo_apellido": "B2",
-  "ciudad": "B3",
-  "profesion": "B4",
-  "fecha_nacimiento": "B5",
-  "cedula": "B6",
-  "nivel_seniority": "B7",
-  "anos_experiencia": "B9",
+  "departamento": "B3",
+  "ciudad": "B4",
+  "profesion": "B5",
+  "fecha_nacimiento": "B6",
+  "cedula": "B7",
+  "email": "B8",
+  "seniority_nivel": "B9",
+  "nivel_seniority": "B10",
+  "anos_experiencia": "B12",
   "experiencia": [
     {
-      "compania": "A12",
-      "cargo": "B12",
-      "actividades": "C12",
-      "periodo_inicio": "D12",
-      "periodo_fin": "D12"
+      "compania": "A15",
+      "cargo": "B15",
+      "actividades": "C15",
+      "periodo_inicio": "D15",
+      "periodo_fin": "D15"
     },
     {
-      "compania": "A13",
-      "cargo": "B13",
-      "actividades": "C13",
-      "periodo_inicio": "D13",
-      "periodo_fin": "D13"
+      "compania": "A16",
+      "cargo": "B16",
+      "actividades": "C16",
+      "periodo_inicio": "D16",
+      "periodo_fin": "D16"
     },
     {
-      "compania": "A14",
-      "cargo": "B14",
-      "actividades": "C14",
-      "periodo_inicio": "D14",
-      "periodo_fin": "D14"
+      "compania": "A17",
+      "cargo": "B17",
+      "actividades": "C17",
+      "periodo_inicio": "D17",
+      "periodo_fin": "D17"
     }
   ],
-  "lenguajes_programacion": "B16",
-  "bases_datos": "B17",
-  "aplicaciones": "B18",
-  "frameworks": "B19",
-  "plataformas": "B20",
-  "herramientas": "B21",
-  "otros": "B22",
+  "lenguajes_programacion": "B19",
+  "bases_datos": "B20",
+  "aplicaciones": "B21",
+  "frameworks": "B22",
+  "plataformas": "B23",
+  "herramientas": "B24",
+  "otros": "B25",
   "cursos_certificaciones": [
     {
-      "institucion": "A25",
-      "curso_certificacion": "B25",
-      "fecha_obtencion": "D25"
+      "institucion": "A28",
+      "curso_certificacion": "B28",
+      "fecha_obtencion": "D28"
     },
     {
-      "institucion": "A26",
-      "curso_certificacion": "B26",
-      "fecha_obtencion": "D26"
+      "institucion": "A29",
+      "curso_certificacion": "B29",
+      "fecha_obtencion": "D29"
     },
     {
-      "institucion": "A27",
-      "curso_certificacion": "B27",
-      "fecha_obtencion": "D27"
+      "institucion": "A30",
+      "curso_certificacion": "B30",
+      "fecha_obtencion": "D30"
     }
   ]
 }

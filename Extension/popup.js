@@ -73,6 +73,9 @@ function setupPopup() {
         }
 
         fillFormBtn.classList.add('hidden');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorDetails = document.getElementById('errorDetails');
+        errorMessage.classList.add('hidden');
 
         try {
             const reader = new ExcelReader(null, 'example_data.json');
@@ -87,6 +90,11 @@ function setupPopup() {
             console.log('✅ Datos extraídos exitosamente:', data);
         } catch (error) {
             console.error('Error al leer el Excel:', error);
+            // Mostrar mensaje de validación al usuario en el popup
+            if (errorMessage && errorDetails) {
+                errorDetails.textContent = error.message;
+                errorMessage.classList.remove('hidden');
+            }
         }
     });
     // Manejar click en botón "Rellenar Formulario"
