@@ -16,18 +16,34 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "js": [
+        "src/shared/messages.js",
+        "src/shared/logger.js",
+        "src/shared/utils/text.js",
+        "src/shared/utils/time.js",
+        "src/content/dom/waiters.js",
+        "src/content/dom/selectors.js",
+        "src/content/dom/actions.js",
+        "src/content/steps/step1BasicInfo.js",
+        "src/content/steps/step2Experience.js",
+        "src/content/steps/step3Skills.js",
+        "src/content/steps/step4Education.js",
+        "src/content/orchestrator/navigation.js",
+        "src/content/orchestrator/fillFormFlow.js",
+        "src/content/index.js"
+      ],
       "run_at": "document_idle"
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/index.js"
   },
   "web_accessible_resources": [
     {
       "resources": [
         "example_data.xls",
-        "example_data.json"
+        "example_data.json",
+        "config/mapping/example_data.json"
       ],
       "matches": ["<all_urls>"]
     }

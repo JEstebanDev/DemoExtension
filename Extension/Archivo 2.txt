@@ -1,0 +1,1560 @@
+Response Frontend 
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "C# (.NET Framework)",
+            "idConocimiento": "C00116"
+        },
+        {
+            "dsConocimiento": "Fundamentos CSS",
+            "idConocimiento": "C0027"
+        },
+        {
+            "dsConocimiento": "JavaScript",
+            "idConocimiento": "C0053"
+        },
+        {
+            "dsConocimiento": "REACT",
+            "idConocimiento": "C0086"
+        },
+        {
+            "dsConocimiento": "TYPESCRIPT",
+            "idConocimiento": "C00114"
+        },
+        {
+            "dsConocimiento": "Fundamentos HTML",
+            "idConocimiento": "C0045"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "Angular",
+            "idConocimiento": "C008"
+        },
+        {
+            "dsConocimiento": "Next.js (SSR)",
+            "idConocimiento": "C10042"
+        },
+        {
+            "dsConocimiento": "Redux",
+            "idConocimiento": "C10040"
+        },
+        {
+            "dsConocimiento": "Universal (SSR)",
+            "idConocimiento": "C10043"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "Caching",
+            "idConocimiento": "C10850"
+        },
+        {
+            "dsConocimiento": "LocalStorage",
+            "idConocimiento": "C10851"
+        },
+        {
+            "dsConocimiento": "DDD",
+            "idConocimiento": "C10066"
+        },
+        {
+            "dsConocimiento": "DOM y Browser Engine",
+            "idConocimiento": "C10001"
+        },
+        {
+            "dsConocimiento": "Event-driven Architecture (EDA)",
+            "idConocimiento": "C10131"
+        },
+        {
+            "dsConocimiento": "Flex",
+            "idConocimiento": "C10002"
+        },
+        {
+            "dsConocimiento": "PWA",
+            "idConocimiento": "C10041"
+        },
+        {
+            "dsConocimiento": "Service Worker",
+            "idConocimiento": "C10013"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "Jscrambler",
+            "idConocimiento": "C10044"
+        },
+        {
+            "dsConocimiento": "NPM",
+            "idConocimiento": "C10003"
+        },
+        {
+            "dsConocimiento": "WebPack",
+            "idConocimiento": "C10015"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "DOCKER",
+            "idConocimiento": "C0034"
+        },
+        {
+            "dsConocimiento": "Kubernetes",
+            "idConocimiento": "C0054"
+        }
+    ],
+    "aplicacion": [],
+    "baseDeDatos": []
+}
+
+
+
+
+Response Automatizaciones
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "Conceptos generales Programación reactiva",
+            "idConocimiento": "C10409"
+        },
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        },
+        {
+            "dsConocimiento": "Python",
+            "idConocimiento": "C0084"
+        },
+        {
+            "dsConocimiento": "SQL",
+            "idConocimiento": "C00110"
+        },
+        {
+            "dsConocimiento": "XPATH",
+            "idConocimiento": "C00572"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "Playwright",
+            "idConocimiento": "C10878"
+        },
+        {
+            "dsConocimiento": "BDD Framework",
+            "idConocimiento": "C10804"
+        },
+        {
+            "dsConocimiento": "Data Driven Framework",
+            "idConocimiento": "C10805"
+        },
+        {
+            "dsConocimiento": "Karate Framework",
+            "idConocimiento": "C10807"
+        },
+        {
+            "dsConocimiento": "Winium",
+            "idConocimiento": "C10808"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "Arquitectura de microservicios",
+            "idConocimiento": "C10410"
+        },
+        {
+            "dsConocimiento": "Murex AWS Essentials",
+            "idConocimiento": "C10917"
+        },
+        {
+            "dsConocimiento": "BDD (Gherkin / Serenity)",
+            "idConocimiento": "C00105"
+        },
+        {
+            "dsConocimiento": "DevOps CI",
+            "idConocimiento": "C10604"
+        },
+        {
+            "dsConocimiento": "DevOps CT",
+            "idConocimiento": "C10600"
+        },
+        {
+            "dsConocimiento": "Patrón de diseño ScreenPlay",
+            "idConocimiento": "C0070"
+        },
+        {
+            "dsConocimiento": "Pruebas Unitarias",
+            "idConocimiento": "C00554"
+        },
+        {
+            "dsConocimiento": "REST",
+            "idConocimiento": "C10031"
+        },
+        {
+            "dsConocimiento": "SOLID",
+            "idConocimiento": "C10032"
+        },
+        {
+            "dsConocimiento": "WinAppDriver",
+            "idConocimiento": "C10803"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "Análisis Estático (SonarQube)",
+            "idConocimiento": "C10025"
+        },
+        {
+            "dsConocimiento": "Appium ",
+            "idConocimiento": "C10071"
+        },
+        {
+            "dsConocimiento": "Azure DevOps",
+            "idConocimiento": "C10675"
+        },
+        {
+            "dsConocimiento": "Git",
+            "idConocimiento": "C00522"
+        },
+        {
+            "dsConocimiento": "GraphQL",
+            "idConocimiento": "C10060"
+        },
+        {
+            "dsConocimiento": "Postman ",
+            "idConocimiento": "C10094"
+        },
+        {
+            "dsConocimiento": "Selenium",
+            "idConocimiento": "C10070"
+        },
+        {
+            "dsConocimiento": "SoapUI",
+            "idConocimiento": "C10504"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "AWS RDS",
+            "idConocimiento": "C002"
+        },
+        {
+            "dsConocimiento": "Kobiton",
+            "idConocimiento": "C10806"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "Micro Focus Extra! X-treme (MyExtra)",
+            "idConocimiento": "C10809"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "DynamoDB",
+            "idConocimiento": "C007"
+        },
+        {
+            "dsConocimiento": "DB2",
+            "idConocimiento": "C0031"
+        },
+        {
+            "dsConocimiento": "MongoDB",
+            "idConocimiento": "C0059"
+        },
+        {
+            "dsConocimiento": "MYSQL",
+            "idConocimiento": "C0061"
+        },
+        {
+            "dsConocimiento": "ORACLE",
+            "idConocimiento": "C0066"
+        },
+        {
+            "dsConocimiento": "PostgreSQL",
+            "idConocimiento": "C0074"
+        },
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        }
+    ]
+}
+
+
+Response backend
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "C# (.NET Framework)",
+            "idConocimiento": "C00116"
+        },
+        {
+            "dsConocimiento": "CL",
+            "idConocimiento": "C0022"
+        },
+        {
+            "dsConocimiento": "COBOL",
+            "idConocimiento": "C0026"
+        },
+        {
+            "dsConocimiento": "Dart",
+            "idConocimiento": "C0643"
+        },
+        {
+            "dsConocimiento": "Elixir",
+            "idConocimiento": "C00588"
+        },
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        },
+        {
+            "dsConocimiento": "Python",
+            "idConocimiento": "C0084"
+        },
+        {
+            "dsConocimiento": "RPG/ILE",
+            "idConocimiento": "C0089"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "ASP MVC",
+            "idConocimiento": "C10045"
+        },
+        {
+            "dsConocimiento": "Express",
+            "idConocimiento": "C10021"
+        },
+        {
+            "dsConocimiento": "Flask",
+            "idConocimiento": "C10022"
+        },
+        {
+            "dsConocimiento": "NPA/NHibernate",
+            "idConocimiento": "C10046"
+        },
+        {
+            "dsConocimiento": "Pandas",
+            "idConocimiento": "C10051"
+        },
+        {
+            "dsConocimiento": "Scikit-learn",
+            "idConocimiento": "C10444"
+        },
+        {
+            "dsConocimiento": "Spring Boot",
+            "idConocimiento": "C00450"
+        },
+        {
+            "dsConocimiento": "Spring Cloud",
+            "idConocimiento": "C10047"
+        },
+        {
+            "dsConocimiento": "Spring Web",
+            "idConocimiento": "C0657"
+        },
+        {
+            "dsConocimiento": "Django",
+            "idConocimiento": "C10053"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "AMQP",
+            "idConocimiento": "C10057"
+        },
+        {
+            "dsConocimiento": "Apache Camel",
+            "idConocimiento": "C00604"
+        },
+        {
+            "dsConocimiento": "Azure Active Directory",
+            "idConocimiento": "C0014"
+        },
+        {
+            "dsConocimiento": "BDD (Gherkin / Serenity)",
+            "idConocimiento": "C00105"
+        },
+        {
+            "dsConocimiento": "Event-driven Architecture (EDA)",
+            "idConocimiento": "C10131"
+        },
+        {
+            "dsConocimiento": "Jmeter",
+            "idConocimiento": "C10232"
+        },
+        {
+            "dsConocimiento": "JMS",
+            "idConocimiento": "C10058"
+        },
+        {
+            "dsConocimiento": "OAuth 2.0",
+            "idConocimiento": "C10027"
+        },
+        {
+            "dsConocimiento": "OpenAPI",
+            "idConocimiento": "C10061"
+        },
+        {
+            "dsConocimiento": "OpenID",
+            "idConocimiento": "C10028"
+        },
+        {
+            "dsConocimiento": "OWASP ",
+            "idConocimiento": "C10687"
+        },
+        {
+            "dsConocimiento": "SOLID",
+            "idConocimiento": "C10032"
+        },
+        {
+            "dsConocimiento": "Sterling",
+            "idConocimiento": "C10269"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "Análisis Estático (SonarQube)",
+            "idConocimiento": "C10025"
+        },
+        {
+            "dsConocimiento": "Appium ",
+            "idConocimiento": "C10071"
+        },
+        {
+            "dsConocimiento": "Git",
+            "idConocimiento": "C00522"
+        },
+        {
+            "dsConocimiento": "Gradle",
+            "idConocimiento": "C00610"
+        },
+        {
+            "dsConocimiento": "GraphQL",
+            "idConocimiento": "C10060"
+        },
+        {
+            "dsConocimiento": "JUNIT",
+            "idConocimiento": "C10529"
+        },
+        {
+            "dsConocimiento": "NPM",
+            "idConocimiento": "C10003"
+        },
+        {
+            "dsConocimiento": "Postman ",
+            "idConocimiento": "C10094"
+        },
+        {
+            "dsConocimiento": "RabbitMQ",
+            "idConocimiento": "C10033"
+        },
+        {
+            "dsConocimiento": "Selenium",
+            "idConocimiento": "C10070"
+        },
+        {
+            "dsConocimiento": "UrbanCode",
+            "idConocimiento": "C10056"
+        },
+        {
+            "dsConocimiento": "WebSocket",
+            "idConocimiento": "C10067"
+        },
+        {
+            "dsConocimiento": "GoAnywhere",
+            "idConocimiento": "C10900"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "Apache Kafka",
+            "idConocimiento": "C00596"
+        },
+        {
+            "dsConocimiento": "Apache Tomcat",
+            "idConocimiento": "C00605"
+        },
+        {
+            "dsConocimiento": "DOCKER",
+            "idConocimiento": "C0034"
+        },
+        {
+            "dsConocimiento": "IIS",
+            "idConocimiento": "C0049"
+        },
+        {
+            "dsConocimiento": "Kubernetes",
+            "idConocimiento": "C0054"
+        },
+        {
+            "dsConocimiento": "Mockito",
+            "idConocimiento": "C00612"
+        },
+        {
+            "dsConocimiento": "Node.js",
+            "idConocimiento": "C0064"
+        },
+        {
+            "dsConocimiento": "PowerMock",
+            "idConocimiento": "C00611"
+        },
+        {
+            "dsConocimiento": "SPARK",
+            "idConocimiento": "C003"
+        },
+        {
+            "dsConocimiento": "WAS",
+            "idConocimiento": "C00119"
+        },
+        {
+            "dsConocimiento": "WMQ",
+            "idConocimiento": "C10059"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "Artifactory",
+            "idConocimiento": "C00305"
+        },
+        {
+            "dsConocimiento": "SWIFT",
+            "idConocimiento": "C00186"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "DynamoDB",
+            "idConocimiento": "C007"
+        },
+        {
+            "dsConocimiento": "DB2",
+            "idConocimiento": "C0031"
+        },
+        {
+            "dsConocimiento": "IBM Cloudant",
+            "idConocimiento": "C0048"
+        },
+        {
+            "dsConocimiento": "MongoDB",
+            "idConocimiento": "C0059"
+        },
+        {
+            "dsConocimiento": "MYSQL",
+            "idConocimiento": "C0061"
+        },
+        {
+            "dsConocimiento": "ORACLE",
+            "idConocimiento": "C0066"
+        },
+        {
+            "dsConocimiento": "PostgreSQL",
+            "idConocimiento": "C0074"
+        },
+        {
+            "dsConocimiento": "REDIS",
+            "idConocimiento": "C0087"
+        },
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        }
+    ]
+}
+
+
+Response Fullstack 
+
+{
+    "lenguaje": [],
+    "framework": [
+        {
+            "dsConocimiento": "Angular",
+            "idConocimiento": "C008"
+        },
+        {
+            "dsConocimiento": "ASP MVC",
+            "idConocimiento": "C10045"
+        },
+        {
+            "dsConocimiento": "Express",
+            "idConocimiento": "C10021"
+        },
+        {
+            "dsConocimiento": "Flask",
+            "idConocimiento": "C10022"
+        },
+        {
+            "dsConocimiento": "Next.js (SSR)",
+            "idConocimiento": "C10042"
+        },
+        {
+            "dsConocimiento": "NPA/NHibernate",
+            "idConocimiento": "C10046"
+        },
+        {
+            "dsConocimiento": "Pandas",
+            "idConocimiento": "C10051"
+        },
+        {
+            "dsConocimiento": "QUARKUS",
+            "idConocimiento": "C10710"
+        },
+        {
+            "dsConocimiento": "Redux",
+            "idConocimiento": "C10040"
+        },
+        {
+            "dsConocimiento": "Scikit-learn",
+            "idConocimiento": "C10444"
+        },
+        {
+            "dsConocimiento": "Spring Boot",
+            "idConocimiento": "C00450"
+        },
+        {
+            "dsConocimiento": "Spring Cloud",
+            "idConocimiento": "C10047"
+        },
+        {
+            "dsConocimiento": "Spring Web",
+            "idConocimiento": "C0657"
+        },
+        {
+            "dsConocimiento": "Spring Framework",
+            "idConocimiento": "C00606"
+        },
+        {
+            "dsConocimiento": "Universal (SSR)",
+            "idConocimiento": "C10043"
+        },
+        {
+            "dsConocimiento": "Django",
+            "idConocimiento": "C10053"
+        }
+    ],
+    "otros": [],
+    "herramienta": [],
+    "plataforma": [
+        {
+            "dsConocimiento": "Apache Kafka",
+            "idConocimiento": "C00596"
+        },
+        {
+            "dsConocimiento": "Apache Tomcat",
+            "idConocimiento": "C00605"
+        },
+        {
+            "dsConocimiento": "DOCKER",
+            "idConocimiento": "C0034"
+        },
+        {
+            "dsConocimiento": "IIS",
+            "idConocimiento": "C0049"
+        },
+        {
+            "dsConocimiento": "Kubernetes",
+            "idConocimiento": "C0054"
+        },
+        {
+            "dsConocimiento": "Mockito",
+            "idConocimiento": "C00612"
+        },
+        {
+            "dsConocimiento": "Node.js",
+            "idConocimiento": "C0064"
+        },
+        {
+            "dsConocimiento": "PowerMock",
+            "idConocimiento": "C00611"
+        },
+        {
+            "dsConocimiento": "SPARK",
+            "idConocimiento": "C003"
+        },
+        {
+            "dsConocimiento": "WAS",
+            "idConocimiento": "C00119"
+        },
+        {
+            "dsConocimiento": "WMQ",
+            "idConocimiento": "C10059"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "Artifactory",
+            "idConocimiento": "C00305"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "DynamoDB",
+            "idConocimiento": "C007"
+        },
+        {
+            "dsConocimiento": "DB2",
+            "idConocimiento": "C0031"
+        },
+        {
+            "dsConocimiento": "IBM Cloudant",
+            "idConocimiento": "C0048"
+        },
+        {
+            "dsConocimiento": "MongoDB",
+            "idConocimiento": "C0059"
+        },
+        {
+            "dsConocimiento": "MYSQL",
+            "idConocimiento": "C0061"
+        },
+        {
+            "dsConocimiento": "ORACLE",
+            "idConocimiento": "C0066"
+        },
+        {
+            "dsConocimiento": "PostgreSQL",
+            "idConocimiento": "C0074"
+        },
+        {
+            "dsConocimiento": "REDIS",
+            "idConocimiento": "C0087"
+        },
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        }
+    ]
+}
+
+Response mobile developer
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "C# (.NET Framework)",
+            "idConocimiento": "C00116"
+        },
+        {
+            "dsConocimiento": "Dart",
+            "idConocimiento": "C0643"
+        },
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        },
+        {
+            "dsConocimiento": "JavaScript",
+            "idConocimiento": "C0053"
+        },
+        {
+            "dsConocimiento": "Kotlin",
+            "idConocimiento": "C00584"
+        },
+        {
+            "dsConocimiento": "Objective C",
+            "idConocimiento": "C10023"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "No SQL",
+            "idConocimiento": "C10109"
+        },
+        {
+            "dsConocimiento": "Flutter",
+            "idConocimiento": "C0644"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "BDD (Gherkin / Serenity)",
+            "idConocimiento": "C00105"
+        },
+        {
+            "dsConocimiento": "Despliegue en Tiendas",
+            "idConocimiento": "C10069"
+        },
+        {
+            "dsConocimiento": "Device Farm",
+            "idConocimiento": "C10072"
+        },
+        {
+            "dsConocimiento": "Jmeter",
+            "idConocimiento": "C10232"
+        },
+        {
+            "dsConocimiento": "Material Design",
+            "idConocimiento": "C10024"
+        },
+        {
+            "dsConocimiento": "Mobile First Design",
+            "idConocimiento": "C10008"
+        },
+        {
+            "dsConocimiento": "OpenAPI",
+            "idConocimiento": "C10061"
+        },
+        {
+            "dsConocimiento": "Push Notification",
+            "idConocimiento": "C10014"
+        },
+        {
+            "dsConocimiento": "PWA",
+            "idConocimiento": "C10041"
+        },
+        {
+            "dsConocimiento": "Responsive Design",
+            "idConocimiento": "C10054"
+        },
+        {
+            "dsConocimiento": "Service Worker",
+            "idConocimiento": "C10013"
+        },
+        {
+            "dsConocimiento": "Xamarin",
+            "idConocimiento": "C00124"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "Análisis Estático (SonarQube)",
+            "idConocimiento": "C10025"
+        },
+        {
+            "dsConocimiento": "Android Studio",
+            "idConocimiento": "C10020"
+        },
+        {
+            "dsConocimiento": "Appium ",
+            "idConocimiento": "C10071"
+        },
+        {
+            "dsConocimiento": "ESLint ",
+            "idConocimiento": "C10092"
+        },
+        {
+            "dsConocimiento": "Git",
+            "idConocimiento": "C00522"
+        },
+        {
+            "dsConocimiento": "GraphQL",
+            "idConocimiento": "C10060"
+        },
+        {
+            "dsConocimiento": "JSHint ",
+            "idConocimiento": "C10093"
+        },
+        {
+            "dsConocimiento": "JUNIT",
+            "idConocimiento": "C10529"
+        },
+        {
+            "dsConocimiento": "Postman ",
+            "idConocimiento": "C10094"
+        },
+        {
+            "dsConocimiento": "Prettier ",
+            "idConocimiento": "C10091"
+        },
+        {
+            "dsConocimiento": "Selenium",
+            "idConocimiento": "C10070"
+        },
+        {
+            "dsConocimiento": "UrbanCode",
+            "idConocimiento": "C10056"
+        },
+        {
+            "dsConocimiento": "WebSocket",
+            "idConocimiento": "C10067"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "Mockito",
+            "idConocimiento": "C00612"
+        },
+        {
+            "dsConocimiento": "PowerMock",
+            "idConocimiento": "C00611"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "Artifactory",
+            "idConocimiento": "C00305"
+        },
+        {
+            "dsConocimiento": "SWIFT",
+            "idConocimiento": "C00186"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "Couchbase Mobile",
+            "idConocimiento": "C10035"
+        },
+        {
+            "dsConocimiento": "LevelDB",
+            "idConocimiento": "C10034"
+        },
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        },
+        {
+            "dsConocimiento": "SQLite",
+            "idConocimiento": "C10007"
+        }
+    ]
+}
+
+Response Devops
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "C# (.NET Framework)",
+            "idConocimiento": "C00116"
+        },
+        {
+            "dsConocimiento": "CL",
+            "idConocimiento": "C0022"
+        },
+        {
+            "dsConocimiento": "COBOL",
+            "idConocimiento": "C0026"
+        },
+        {
+            "dsConocimiento": "Dart",
+            "idConocimiento": "C0643"
+        },
+        {
+            "dsConocimiento": "Elixir",
+            "idConocimiento": "C00588"
+        },
+        {
+            "dsConocimiento": "Python",
+            "idConocimiento": "C0084"
+        },
+        {
+            "dsConocimiento": "RPG/ILE",
+            "idConocimiento": "C0089"
+        },
+        {
+            "dsConocimiento": "Swift (Lenguaje)",
+            "idConocimiento": "C10004"
+        },
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "ASP MVC",
+            "idConocimiento": "C10045"
+        },
+        {
+            "dsConocimiento": "Express",
+            "idConocimiento": "C10021"
+        },
+        {
+            "dsConocimiento": "Flask",
+            "idConocimiento": "C10022"
+        },
+        {
+            "dsConocimiento": "NPA/NHibernate",
+            "idConocimiento": "C10046"
+        },
+        {
+            "dsConocimiento": "Pandas",
+            "idConocimiento": "C10051"
+        },
+        {
+            "dsConocimiento": "Scikit-learn",
+            "idConocimiento": "C10444"
+        },
+        {
+            "dsConocimiento": "Spring Boot",
+            "idConocimiento": "C00450"
+        },
+        {
+            "dsConocimiento": "Spring Cloud",
+            "idConocimiento": "C10047"
+        },
+        {
+            "dsConocimiento": "Spring Web",
+            "idConocimiento": "C0657"
+        },
+        {
+            "dsConocimiento": "SLIs / SLOs / Blameless Postmortems / Error Budgets / SRE",
+            "idConocimiento": "C10770"
+        },
+        {
+            "dsConocimiento": "Chaos Engineering / Reducing Toil / SRE",
+            "idConocimiento": "C00526"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "AMQP",
+            "idConocimiento": "C10057"
+        },
+        {
+            "dsConocimiento": "Apache Camel",
+            "idConocimiento": "C00604"
+        },
+        {
+            "dsConocimiento": "Azure Active Directory",
+            "idConocimiento": "C0014"
+        },
+        {
+            "dsConocimiento": "BDD (Gherkin / Serenity)",
+            "idConocimiento": "C00105"
+        },
+        {
+            "dsConocimiento": "Event-driven Architecture (EDA)",
+            "idConocimiento": "C10131"
+        },
+        {
+            "dsConocimiento": "Jmeter",
+            "idConocimiento": "C10232"
+        },
+        {
+            "dsConocimiento": "JMS",
+            "idConocimiento": "C10058"
+        },
+        {
+            "dsConocimiento": "OAuth 2.0",
+            "idConocimiento": "C10027"
+        },
+        {
+            "dsConocimiento": "OpenAPI",
+            "idConocimiento": "C10061"
+        },
+        {
+            "dsConocimiento": "OpenID",
+            "idConocimiento": "C10028"
+        },
+        {
+            "dsConocimiento": "OWASP ",
+            "idConocimiento": "C10687"
+        },
+        {
+            "dsConocimiento": "SOLID",
+            "idConocimiento": "C10032"
+        },
+        {
+            "dsConocimiento": "Sterling",
+            "idConocimiento": "C10269"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "Análisis Estático (SonarQube)",
+            "idConocimiento": "C10025"
+        },
+        {
+            "dsConocimiento": "Appium ",
+            "idConocimiento": "C10071"
+        },
+        {
+            "dsConocimiento": "Git",
+            "idConocimiento": "C00522"
+        },
+        {
+            "dsConocimiento": "Gradle",
+            "idConocimiento": "C00610"
+        },
+        {
+            "dsConocimiento": "GraphQL",
+            "idConocimiento": "C10060"
+        },
+        {
+            "dsConocimiento": "JUNIT",
+            "idConocimiento": "C10529"
+        },
+        {
+            "dsConocimiento": "NPM",
+            "idConocimiento": "C10003"
+        },
+        {
+            "dsConocimiento": "Postman ",
+            "idConocimiento": "C10094"
+        },
+        {
+            "dsConocimiento": "RabbitMQ",
+            "idConocimiento": "C10033"
+        },
+        {
+            "dsConocimiento": "Selenium",
+            "idConocimiento": "C10070"
+        },
+        {
+            "dsConocimiento": "UrbanCode",
+            "idConocimiento": "C10056"
+        },
+        {
+            "dsConocimiento": "WebSocket",
+            "idConocimiento": "C10067"
+        },
+        {
+            "dsConocimiento": "Azure DevOps",
+            "idConocimiento": "C10675"
+        },
+        {
+            "dsConocimiento": "Grafana",
+            "idConocimiento": "C10739"
+        },
+        {
+            "dsConocimiento": "Thanos",
+            "idConocimiento": "C10769"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "Apache Kafka",
+            "idConocimiento": "C00596"
+        },
+        {
+            "dsConocimiento": "Apache Tomcat",
+            "idConocimiento": "C00605"
+        },
+        {
+            "dsConocimiento": "DOCKER",
+            "idConocimiento": "C0034"
+        },
+        {
+            "dsConocimiento": "IIS",
+            "idConocimiento": "C0049"
+        },
+        {
+            "dsConocimiento": "Kubernetes",
+            "idConocimiento": "C0054"
+        },
+        {
+            "dsConocimiento": "Mockito",
+            "idConocimiento": "C00612"
+        },
+        {
+            "dsConocimiento": "Node.js",
+            "idConocimiento": "C0064"
+        },
+        {
+            "dsConocimiento": "PowerMock",
+            "idConocimiento": "C00611"
+        },
+        {
+            "dsConocimiento": "SPARK",
+            "idConocimiento": "C003"
+        },
+        {
+            "dsConocimiento": "WAS",
+            "idConocimiento": "C00119"
+        },
+        {
+            "dsConocimiento": "WMQ",
+            "idConocimiento": "C10059"
+        },
+        {
+            "dsConocimiento": "Prometheus",
+            "idConocimiento": "C10741"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "Artifactory",
+            "idConocimiento": "C00305"
+        },
+        {
+            "dsConocimiento": "DYNATRACE",
+            "idConocimiento": "C0036"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "DB2",
+            "idConocimiento": "C0031"
+        },
+        {
+            "dsConocimiento": "IBM Cloudant",
+            "idConocimiento": "C0048"
+        },
+        {
+            "dsConocimiento": "MongoDB",
+            "idConocimiento": "C0059"
+        },
+        {
+            "dsConocimiento": "MYSQL",
+            "idConocimiento": "C0061"
+        },
+        {
+            "dsConocimiento": "ORACLE",
+            "idConocimiento": "C0066"
+        },
+        {
+            "dsConocimiento": "PostgreSQL",
+            "idConocimiento": "C0074"
+        },
+        {
+            "dsConocimiento": "REDIS",
+            "idConocimiento": "C0087"
+        },
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        },
+        {
+            "dsConocimiento": "DynamoDB",
+            "idConocimiento": "C007"
+        }
+    ]
+}
+
+
+Response Arquitectura
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        },
+        {
+            "dsConocimiento": "C# (.NET Framework)",
+            "idConocimiento": "C00116"
+        },
+        {
+            "dsConocimiento": "RPG/ILE",
+            "idConocimiento": "C0089"
+        },
+        {
+            "dsConocimiento": "CL",
+            "idConocimiento": "C0022"
+        },
+        {
+            "dsConocimiento": "COBOL",
+            "idConocimiento": "C0026"
+        },
+        {
+            "dsConocimiento": "Python",
+            "idConocimiento": "C0084"
+        },
+        {
+            "dsConocimiento": "JavaScript",
+            "idConocimiento": "C0053"
+        },
+        {
+            "dsConocimiento": "REACT",
+            "idConocimiento": "C0086"
+        },
+        {
+            "dsConocimiento": "TYPESCRIPT",
+            "idConocimiento": "C00114"
+        },
+        {
+            "dsConocimiento": "Fundamentos CSS",
+            "idConocimiento": "C0027"
+        }
+    ],
+    "framework": [
+        {
+            "dsConocimiento": "Angular",
+            "idConocimiento": "C008"
+        },
+        {
+            "dsConocimiento": "Spring Boot",
+            "idConocimiento": "C00450"
+        },
+        {
+            "dsConocimiento": "Spring Cloud",
+            "idConocimiento": "C10047"
+        },
+        {
+            "dsConocimiento": "Spring Web",
+            "idConocimiento": "C0657"
+        },
+        {
+            "dsConocimiento": "NPA/NHibernate",
+            "idConocimiento": "C10046"
+        },
+        {
+            "dsConocimiento": "ASP MVC",
+            "idConocimiento": "C10045"
+        },
+        {
+            "dsConocimiento": "Express",
+            "idConocimiento": "C10021"
+        },
+        {
+            "dsConocimiento": "Flask",
+            "idConocimiento": "C10022"
+        },
+        {
+            "dsConocimiento": "Pandas",
+            "idConocimiento": "C10051"
+        },
+        {
+            "dsConocimiento": "Scikit-learn",
+            "idConocimiento": "C10444"
+        },
+        {
+            "dsConocimiento": "Redux",
+            "idConocimiento": "C10040"
+        },
+        {
+            "dsConocimiento": "Universal (SSR)",
+            "idConocimiento": "C10043"
+        }
+    ],
+    "otros": [
+        {
+            "dsConocimiento": "Certificación en AWS Solutions Architect - Associate",
+            "idConocimiento": "C10898"
+        },
+        {
+            "dsConocimiento": "Especialización o Maestría en: Tecnologías de Información, Desarrollo y Arquitectura de Software",
+            "idConocimiento": "C10899"
+        },
+        {
+            "dsConocimiento": "DESIGN THINKING",
+            "idConocimiento": "C00475"
+        },
+        {
+            "dsConocimiento": "Patrones de diseño",
+            "idConocimiento": "C10304"
+        },
+        {
+            "dsConocimiento": "DDD",
+            "idConocimiento": "C10066"
+        },
+        {
+            "dsConocimiento": "DevOps",
+            "idConocimiento": "C0032"
+        },
+        {
+            "dsConocimiento": "Analítica",
+            "idConocimiento": "C005"
+        },
+        {
+            "dsConocimiento": "Blockchain",
+            "idConocimiento": "C0019"
+        },
+        {
+            "dsConocimiento": "OAuth 2.0",
+            "idConocimiento": "C10027"
+        },
+        {
+            "dsConocimiento": "Microservicios",
+            "idConocimiento": "C0058"
+        },
+        {
+            "dsConocimiento": "SOA",
+            "idConocimiento": "C00108"
+        },
+        {
+            "dsConocimiento": "Clean Architecture",
+            "idConocimiento": "C10187"
+        },
+        {
+            "dsConocimiento": "Arquitectura Reactiva - Tácticas Arquitectura",
+            "idConocimiento": "C00461"
+        },
+        {
+            "dsConocimiento": "DISEÑO ORIENTADO A OBJETOS",
+            "idConocimiento": "C10527"
+        },
+        {
+            "dsConocimiento": "Inteligencia de negocios (Business Intelligence - BI)",
+            "idConocimiento": "C10511"
+        },
+        {
+            "dsConocimiento": "INTEGRACIÓN API",
+            "idConocimiento": "C10491"
+        },
+        {
+            "dsConocimiento": "ARQUITECTURA CLOUD",
+            "idConocimiento": "C10525"
+        },
+        {
+            "dsConocimiento": "ARQUITECTURA DE SOFTWARE",
+            "idConocimiento": "C10526"
+        }
+    ],
+    "herramienta": [],
+    "plataforma": [
+        {
+            "dsConocimiento": "Node.js",
+            "idConocimiento": "C0064"
+        },
+        {
+            "dsConocimiento": "Apache Kafka",
+            "idConocimiento": "C00596"
+        }
+    ],
+    "aplicacion": [],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        },
+        {
+            "dsConocimiento": "ORACLE",
+            "idConocimiento": "C0066"
+        },
+        {
+            "dsConocimiento": "MYSQL",
+            "idConocimiento": "C0061"
+        },
+        {
+            "dsConocimiento": "DB2",
+            "idConocimiento": "C0031"
+        },
+        {
+            "dsConocimiento": "PostgreSQL",
+            "idConocimiento": "C0074"
+        },
+        {
+            "dsConocimiento": "IBM Cloudant",
+            "idConocimiento": "C0048"
+        },
+        {
+            "dsConocimiento": "REDIS",
+            "idConocimiento": "C0087"
+        },
+        {
+            "dsConocimiento": "MongoDB",
+            "idConocimiento": "C0059"
+        },
+        {
+            "dsConocimiento": "DynamoDB",
+            "idConocimiento": "C007"
+        }
+    ]
+}
+
+Response Analista de soluciones
+
+{
+    "lenguaje": [
+        {
+            "dsConocimiento": "Fundamentos HTML",
+            "idConocimiento": "C0045"
+        },
+        {
+            "dsConocimiento": "Java",
+            "idConocimiento": "C0052"
+        },
+        {
+            "dsConocimiento": "JavaScript",
+            "idConocimiento": "C0053"
+        },
+        {
+            "dsConocimiento": "SQL",
+            "idConocimiento": "C00110"
+        },
+        {
+            "dsConocimiento": "Python",
+            "idConocimiento": "C0084"
+        }
+    ],
+    "framework": [],
+    "otros": [
+        {
+            "dsConocimiento": "API GATEWAY",
+            "idConocimiento": "C00449"
+        },
+        {
+            "dsConocimiento": "REST",
+            "idConocimiento": "C10031"
+        },
+        {
+            "dsConocimiento": "Acceso Remoto",
+            "idConocimiento": "C10221"
+        },
+        {
+            "dsConocimiento": "Analisis de datos",
+            "idConocimiento": "C10215"
+        },
+        {
+            "dsConocimiento": "API",
+            "idConocimiento": "C006"
+        },
+        {
+            "dsConocimiento": "Certificados digitales",
+            "idConocimiento": "C10245"
+        },
+        {
+            "dsConocimiento": "Direccionamiento/subneting/vlan/mac",
+            "idConocimiento": "C10249"
+        },
+        {
+            "dsConocimiento": "EXCEL",
+            "idConocimiento": "C0038"
+        },
+        {
+            "dsConocimiento": "Fundamentos básicos financieros",
+            "idConocimiento": "C10168"
+        },
+        {
+            "dsConocimiento": "Lectura de logs",
+            "idConocimiento": "C10322"
+        },
+        {
+            "dsConocimiento": "Metodologías ágiles",
+            "idConocimiento": "C00544"
+        },
+        {
+            "dsConocimiento": "Protocolos de comunicación segura (SSL/TLS/FTP/HTTPS)",
+            "idConocimiento": "C10319"
+        },
+        {
+            "dsConocimiento": "Automatización",
+            "idConocimiento": "C10216"
+        }
+    ],
+    "herramienta": [
+        {
+            "dsConocimiento": "POWER AUTOMATE",
+            "idConocimiento": "C10519"
+        }
+    ],
+    "plataforma": [
+        {
+            "dsConocimiento": "Bizagi Process Modeler",
+            "idConocimiento": "C0018"
+        },
+        {
+            "dsConocimiento": "AWS Essentials",
+            "idConocimiento": "C0012"
+        },
+        {
+            "dsConocimiento": "ISERIES",
+            "idConocimiento": "C0051"
+        },
+        {
+            "dsConocimiento": "RPA",
+            "idConocimiento": "C0088"
+        }
+    ],
+    "aplicacion": [
+        {
+            "dsConocimiento": "DataPower",
+            "idConocimiento": "C0028"
+        },
+        {
+            "dsConocimiento": "Power Apps",
+            "idConocimiento": "C10857"
+        }
+    ],
+    "baseDeDatos": [
+        {
+            "dsConocimiento": "SQL Server",
+            "idConocimiento": "C00111"
+        }
+    ]
+}

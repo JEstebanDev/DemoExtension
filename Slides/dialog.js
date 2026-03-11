@@ -5,11 +5,105 @@
 
     let currentStep = 0;
     const totalSteps = 4;
+    const MAX_SKILLS_PER_CATEGORY = 4;
+
+    const ROLE_TECH_CATALOG = {
+        frontend: {
+            lenguaje: ['C# (.NET Framework)', 'Fundamentos CSS', 'JavaScript', 'REACT', 'TYPESCRIPT', 'Fundamentos HTML'],
+            framework: ['Angular', 'Next.js (SSR)', 'Redux', 'Universal (SSR)'],
+            otros: ['Caching', 'LocalStorage', 'DDD', 'DOM y Browser Engine', 'Event-driven Architecture (EDA)', 'Flex', 'PWA', 'Service Worker'],
+            herramienta: ['Jscrambler', 'NPM', 'WebPack'],
+            plataforma: ['DOCKER', 'Kubernetes'],
+            aplicacion: [],
+            baseDeDatos: []
+        },
+        automatizaciones: {
+            lenguaje: ['Conceptos generales Programacion reactiva', 'Java', 'Python', 'SQL', 'XPATH'],
+            framework: ['Playwright', 'BDD Framework', 'Data Driven Framework', 'Karate Framework', 'Winium'],
+            otros: ['Arquitectura de microservicios', 'Murex AWS Essentials', 'BDD (Gherkin / Serenity)', 'DevOps CI', 'DevOps CT', 'Patron de diseno ScreenPlay', 'Pruebas Unitarias', 'REST', 'SOLID', 'WinAppDriver'],
+            herramienta: ['Analisis Estatico (SonarQube)', 'Appium', 'Azure DevOps', 'Git', 'GraphQL', 'Postman', 'Selenium', 'SoapUI'],
+            plataforma: ['AWS RDS', 'Kobiton'],
+            aplicacion: ['Micro Focus Extra! X-treme (MyExtra)'],
+            baseDeDatos: ['DynamoDB', 'DB2', 'MongoDB', 'MYSQL', 'ORACLE', 'PostgreSQL', 'SQL Server']
+        },
+        backend: {
+            lenguaje: ['C# (.NET Framework)', 'CL', 'COBOL', 'Dart', 'Elixir', 'Java', 'Python', 'RPG/ILE'],
+            framework: ['ASP MVC', 'Express', 'Flask', 'NPA/NHibernate', 'Pandas', 'Scikit-learn', 'Spring Boot', 'Spring Cloud', 'Spring Web', 'Django'],
+            otros: ['AMQP', 'Apache Camel', 'Azure Active Directory', 'BDD (Gherkin / Serenity)', 'Event-driven Architecture (EDA)', 'Jmeter', 'JMS', 'OAuth 2.0', 'OpenAPI', 'OpenID', 'OWASP', 'SOLID', 'Sterling'],
+            herramienta: ['Analisis Estatico (SonarQube)', 'Appium', 'Git', 'Gradle', 'GraphQL', 'JUNIT', 'NPM', 'Postman', 'RabbitMQ', 'Selenium', 'UrbanCode', 'WebSocket', 'GoAnywhere'],
+            plataforma: ['Apache Kafka', 'Apache Tomcat', 'DOCKER', 'IIS', 'Kubernetes', 'Mockito', 'Node.js', 'PowerMock', 'SPARK', 'WAS', 'WMQ'],
+            aplicacion: ['Artifactory', 'SWIFT'],
+            baseDeDatos: ['DynamoDB', 'DB2', 'IBM Cloudant', 'MongoDB', 'MYSQL', 'ORACLE', 'PostgreSQL', 'REDIS', 'SQL Server']
+        },
+        fullstack: {
+            lenguaje: [],
+            framework: ['Angular', 'ASP MVC', 'Express', 'Flask', 'Next.js (SSR)', 'NPA/NHibernate', 'Pandas', 'QUARKUS', 'Redux', 'Scikit-learn', 'Spring Boot', 'Spring Cloud', 'Spring Web', 'Spring Framework', 'Universal (SSR)', 'Django'],
+            otros: [],
+            herramienta: [],
+            plataforma: ['Apache Kafka', 'Apache Tomcat', 'DOCKER', 'IIS', 'Kubernetes', 'Mockito', 'Node.js', 'PowerMock', 'SPARK', 'WAS', 'WMQ'],
+            aplicacion: ['Artifactory'],
+            baseDeDatos: ['DynamoDB', 'DB2', 'IBM Cloudant', 'MongoDB', 'MYSQL', 'ORACLE', 'PostgreSQL', 'REDIS', 'SQL Server']
+        },
+        mobile: {
+            lenguaje: ['C# (.NET Framework)', 'Dart', 'Java', 'JavaScript', 'Kotlin', 'Objective C'],
+            framework: ['No SQL', 'Flutter'],
+            otros: ['BDD (Gherkin / Serenity)', 'Despliegue en Tiendas', 'Device Farm', 'Jmeter', 'Material Design', 'Mobile First Design', 'OpenAPI', 'Push Notification', 'PWA', 'Responsive Design', 'Service Worker', 'Xamarin'],
+            herramienta: ['Analisis Estatico (SonarQube)', 'Android Studio', 'Appium', 'ESLint', 'Git', 'GraphQL', 'JSHint', 'JUNIT', 'Postman', 'Prettier', 'Selenium', 'UrbanCode', 'WebSocket'],
+            plataforma: ['Mockito', 'PowerMock'],
+            aplicacion: ['Artifactory', 'SWIFT'],
+            baseDeDatos: ['Couchbase Mobile', 'LevelDB', 'SQL Server', 'SQLite']
+        },
+        devops: {
+            lenguaje: ['C# (.NET Framework)', 'CL', 'COBOL', 'Dart', 'Elixir', 'Python', 'RPG/ILE', 'Swift (Lenguaje)', 'Java'],
+            framework: ['ASP MVC', 'Express', 'Flask', 'NPA/NHibernate', 'Pandas', 'Scikit-learn', 'Spring Boot', 'Spring Cloud', 'Spring Web', 'SLIs / SLOs / Blameless Postmortems / Error Budgets / SRE', 'Chaos Engineering / Reducing Toil / SRE'],
+            otros: ['AMQP', 'Apache Camel', 'Azure Active Directory', 'BDD (Gherkin / Serenity)', 'Event-driven Architecture (EDA)', 'Jmeter', 'JMS', 'OAuth 2.0', 'OpenAPI', 'OpenID', 'OWASP', 'SOLID', 'Sterling'],
+            herramienta: ['Analisis Estatico (SonarQube)', 'Appium', 'Git', 'Gradle', 'GraphQL', 'JUNIT', 'NPM', 'Postman', 'RabbitMQ', 'Selenium', 'UrbanCode', 'WebSocket', 'Azure DevOps', 'Grafana', 'Thanos'],
+            plataforma: ['Apache Kafka', 'Apache Tomcat', 'DOCKER', 'IIS', 'Kubernetes', 'Mockito', 'Node.js', 'PowerMock', 'SPARK', 'WAS', 'WMQ', 'Prometheus'],
+            aplicacion: ['Artifactory', 'DYNATRACE'],
+            baseDeDatos: ['DB2', 'IBM Cloudant', 'MongoDB', 'MYSQL', 'ORACLE', 'PostgreSQL', 'REDIS', 'SQL Server', 'DynamoDB']
+        },
+        arquitectura: {
+            lenguaje: ['Java', 'C# (.NET Framework)', 'RPG/ILE', 'CL', 'COBOL', 'Python', 'JavaScript', 'REACT', 'TYPESCRIPT', 'Fundamentos CSS'],
+            framework: ['Angular', 'Spring Boot', 'Spring Cloud', 'Spring Web', 'NPA/NHibernate', 'ASP MVC', 'Express', 'Flask', 'Pandas', 'Scikit-learn', 'Redux', 'Universal (SSR)'],
+            otros: ['Certificacion en AWS Solutions Architect - Associate', 'Especializacion o Maestria en: Tecnologias de Informacion, Desarrollo y Arquitectura de Software', 'DESIGN THINKING', 'Patrones de diseno', 'DDD', 'DevOps', 'Analitica', 'Blockchain', 'OAuth 2.0', 'Microservicios', 'SOA', 'Clean Architecture', 'Arquitectura Reactiva - Tacticas Arquitectura', 'DISENO ORIENTADO A OBJETOS', 'Inteligencia de negocios (Business Intelligence - BI)', 'INTEGRACION API', 'ARQUITECTURA CLOUD', 'ARQUITECTURA DE SOFTWARE'],
+            herramienta: [],
+            plataforma: ['Node.js', 'Apache Kafka'],
+            aplicacion: [],
+            baseDeDatos: ['SQL Server', 'ORACLE', 'MYSQL', 'DB2', 'PostgreSQL', 'IBM Cloudant', 'REDIS', 'MongoDB', 'DynamoDB']
+        },
+        analista: {
+            lenguaje: ['Fundamentos HTML', 'Java', 'JavaScript', 'SQL', 'Python'],
+            framework: [],
+            otros: ['API GATEWAY', 'REST', 'Acceso Remoto', 'Analisis de datos', 'API', 'Certificados digitales', 'Direccionamiento/subneting/vlan/mac', 'EXCEL', 'Fundamentos basicos financieros', 'Lectura de logs', 'Metodologias agiles', 'Protocolos de comunicacion segura (SSL/TLS/FTP/HTTPS)', 'Automatizacion'],
+            herramienta: ['POWER AUTOMATE'],
+            plataforma: ['Bizagi Process Modeler', 'AWS Essentials', 'ISERIES', 'RPA'],
+            aplicacion: ['DataPower', 'Power Apps'],
+            baseDeDatos: ['SQL Server']
+        }
+    };
+
+    const CATEGORY_CONFIG = [
+        { key: 'lenguaje', fieldName: 'lenguajes_programacion', placeholderContains: 'Lenguajes de programaci', overlayId: 'skills-overlay-lenguaje' },
+        { key: 'baseDeDatos', fieldName: 'bases_datos', placeholderContains: 'Bases de datos', overlayId: 'skills-overlay-baseDeDatos' },
+        { key: 'aplicacion', fieldName: 'aplicaciones', placeholderContains: 'Aplicaciones', overlayId: 'skills-overlay-aplicacion' },
+        { key: 'framework', fieldName: 'frameworks', placeholderContains: 'Frameworks', overlayId: 'skills-overlay-framework' },
+        { key: 'plataforma', fieldName: 'plataformas', placeholderContains: 'Plataformas', overlayId: 'skills-overlay-plataforma' },
+        { key: 'herramienta', fieldName: 'herramientas', placeholderContains: 'Herramientas', overlayId: 'skills-overlay-herramienta' },
+        { key: 'otros', fieldName: 'otros', placeholderContains: 'Otros', overlayId: 'skills-overlay-otros' }
+    ];
+
+    const knowledgeOverlayState = {
+        roleKey: '',
+        roleRaw: '',
+        candidateData: {},
+        categories: {}
+    };
 
     // Inicialización cuando el DOM está listo
     document.addEventListener('DOMContentLoaded', function() {
         initializeStepper();
         initializeSelects();
+        initializeKnowledgeOverlays();
         initializeButtons();
         initializeOpenDialogButton();
         initializeOpenTrainingDialogButton();
@@ -278,6 +372,246 @@
         }
     }
 
+    function normalizeText(value) {
+        return String(value || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    }
+
+    function resolveRoleKey(rawRole) {
+        const normalized = normalizeText(rawRole);
+        if (!normalized) return '';
+        if (normalized.includes('automat')) return 'automatizaciones';
+        if (normalized.includes('full')) return 'fullstack';
+        if (normalized.includes('devops')) return 'devops';
+        if (normalized.includes('arquitect')) return 'arquitectura';
+        if (normalized.includes('analista')) return 'analista';
+        if (normalized.includes('mobile') || normalized.includes('movil')) return 'mobile';
+        if (normalized.includes('front')) return 'frontend';
+        if (normalized.includes('back')) return 'backend';
+        if (ROLE_TECH_CATALOG[normalized]) return normalized;
+        return '';
+    }
+
+    function getRoleFromCandidateData() {
+        const fromWindow = window.candidateData?.rol || window.demoData?.rol || window.excelData?.rol || '';
+        if (fromWindow) return fromWindow;
+        const fromStorage = localStorage.getItem('candidateRol') || localStorage.getItem('rol') || '';
+        if (fromStorage) return fromStorage;
+        return '';
+    }
+
+    function ensureCategoryState(categoryKey) {
+        if (!knowledgeOverlayState.categories[categoryKey]) {
+            knowledgeOverlayState.categories[categoryKey] = {
+                selected: [],
+                filtered: []
+            };
+        }
+        return knowledgeOverlayState.categories[categoryKey];
+    }
+
+    function getCategoryInput(config) {
+        const inputs = Array.from(document.querySelectorAll('input[placeholder]'));
+        return inputs.find(input => normalizeText(input.getAttribute('placeholder')).includes(normalizeText(config.placeholderContains)));
+    }
+
+    function createOrGetHiddenInput(visibleInput, fieldName) {
+        const hiddenId = `${visibleInput.id || fieldName}-hidden`;
+        let hidden = document.getElementById(hiddenId);
+        if (!hidden) {
+            hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.id = hiddenId;
+            hidden.name = fieldName;
+            visibleInput.parentElement.appendChild(hidden);
+        }
+        return hidden;
+    }
+
+    function syncCategoryValue(visibleInput, fieldName, selectedValues) {
+        const serialized = selectedValues.join(', ');
+        const hidden = createOrGetHiddenInput(visibleInput, fieldName);
+        hidden.value = serialized;
+        visibleInput.dataset.selectedValues = serialized;
+        visibleInput.value = serialized;
+        visibleInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function closeAllKnowledgePanels(exceptPanel) {
+        document.querySelectorAll('.skills-overlay-panel.open').forEach(panel => {
+            if (panel !== exceptPanel) panel.classList.remove('open');
+        });
+    }
+
+    function getPanelListElement(panel) {
+        return panel.querySelector('.skills-overlay-list') || panel;
+    }
+
+    function buildOptionElement(value, onSelect) {
+        const option = document.createElement('div');
+        option.className = 'skills-overlay-option mat-mdc-option mdc-list-item';
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'mdc-list-item__primary-text';
+        textSpan.textContent = ` ${value} `;
+        option.appendChild(textSpan);
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            onSelect(value);
+        });
+        return option;
+    }
+
+    function renderKnowledgeChips(config, input, chipContainer) {
+        chipContainer.querySelectorAll('.skills-chip').forEach(node => node.remove());
+    }
+
+    function renderKnowledgePanel(config, input, panel, searchText) {
+        const list = getPanelListElement(panel);
+        const categoryState = ensureCategoryState(config.key);
+        const roleData = ROLE_TECH_CATALOG[knowledgeOverlayState.roleKey] || {};
+        const options = roleData[config.key] || [];
+        const selectedSet = new Set(categoryState.selected.map(normalizeText));
+        const filtered = options.filter(option => {
+            const matchesFilter = !searchText || normalizeText(option).includes(normalizeText(searchText));
+            const notSelected = !selectedSet.has(normalizeText(option));
+            return matchesFilter && notSelected;
+        });
+        categoryState.filtered = filtered;
+        list.innerHTML = '';
+        if (!knowledgeOverlayState.roleKey) {
+            const empty = document.createElement('div');
+            empty.className = 'skills-overlay-empty';
+            empty.textContent = 'Rol no definido.';
+            list.appendChild(empty);
+            return;
+        }
+        if (filtered.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'skills-overlay-empty';
+            empty.textContent = options.length ? 'Sin coincidencias.' : 'Sin opciones para este rol.';
+            list.appendChild(empty);
+            return;
+        }
+        filtered.forEach(option => {
+            list.appendChild(buildOptionElement(option, function(value) {
+                if (categoryState.selected.length >= MAX_SKILLS_PER_CATEGORY) return;
+                if (categoryState.selected.some(item => normalizeText(item) === normalizeText(value))) return;
+                categoryState.selected.push(value);
+                syncCategoryValue(input, config.fieldName, categoryState.selected);
+                renderKnowledgeChips(config, input, input.parentElement);
+                renderKnowledgePanel(config, input, panel, '');
+                panel.classList.remove('open');
+            }));
+        });
+    }
+
+    function positionPanel(panel, input) {
+        const rect = input.getBoundingClientRect();
+        panel.style.width = `${Math.max(rect.width, 280)}px`;
+        panel.style.left = `${window.scrollX + rect.left}px`;
+        panel.style.top = `${window.scrollY + rect.bottom + 4}px`;
+    }
+
+    function getOrCreateOverlayPanel(config) {
+        let panel = document.getElementById(config.overlayId);
+        if (panel) return panel;
+        panel = document.createElement('div');
+        panel.id = config.overlayId;
+        panel.className = 'skills-overlay-panel cdk-overlay-pane';
+        panel.innerHTML = '<div role="listbox" class="skills-overlay-list mat-mdc-autocomplete-panel mdc-menu-surface mat-primary"></div>';
+        document.body.appendChild(panel);
+        return panel;
+    }
+
+    function bindCategoryOverlay(config) {
+        const input = getCategoryInput(config);
+        if (!input) return;
+        if (input.dataset.skillsOverlayBound === 'true') return;
+
+        input.dataset.skillsOverlayBound = 'true';
+        input.setAttribute('autocomplete', 'off');
+        const chipContainer = input.closest('.mdc-evolution-chip-set__chips') || input.parentElement;
+        const panel = getOrCreateOverlayPanel(config);
+        panel.dataset.category = config.key;
+
+        ensureCategoryState(config.key);
+        syncCategoryValue(input, config.fieldName, []);
+        renderKnowledgeChips(config, input, chipContainer);
+
+        const openPanel = function(searchText) {
+            closeAllKnowledgePanels(panel);
+            positionPanel(panel, input);
+            renderKnowledgePanel(config, input, panel, searchText || '');
+            panel.classList.add('open');
+        };
+
+        input.addEventListener('focus', function() {
+            openPanel('');
+        });
+        input.addEventListener('click', function(e) {
+            e.stopPropagation();
+            openPanel('');
+        });
+        input.addEventListener('input', function() {
+            openPanel(input.value);
+        });
+
+        window.addEventListener('resize', function() {
+            if (panel.classList.contains('open')) positionPanel(panel, input);
+        });
+        window.addEventListener('scroll', function() {
+            if (panel.classList.contains('open')) positionPanel(panel, input);
+        }, true);
+    }
+
+    function refreshRoleCatalog() {
+        const roleRaw = knowledgeOverlayState.candidateData?.rol || getRoleFromCandidateData();
+        const resolvedRoleKey = resolveRoleKey(roleRaw);
+        const roleKey = resolvedRoleKey || 'backend';
+        const changed = knowledgeOverlayState.roleKey !== roleKey;
+        knowledgeOverlayState.roleRaw = roleRaw;
+        knowledgeOverlayState.roleKey = roleKey;
+
+        if (!resolvedRoleKey && roleRaw) {
+            console.warn(`[dialog] Rol no reconocido para conocimientos: ${roleRaw}. Se usara backend por defecto.`);
+        }
+        if (!changed) return;
+
+        CATEGORY_CONFIG.forEach(config => {
+            const input = getCategoryInput(config);
+            if (!input) return;
+            const categoryState = ensureCategoryState(config.key);
+            categoryState.selected = [];
+            syncCategoryValue(input, config.fieldName, []);
+            const chipContainer = input.closest('.mdc-evolution-chip-set__chips') || input.parentElement;
+            renderKnowledgeChips(config, input, chipContainer);
+        });
+    }
+
+    function initializeKnowledgeOverlays() {
+        CATEGORY_CONFIG.forEach(bindCategoryOverlay);
+        const cargoInput = document.querySelector('input[placeholder="Cargo"]');
+        if (cargoInput) {
+            cargoInput.addEventListener('input', refreshRoleCatalog);
+            cargoInput.addEventListener('change', refreshRoleCatalog);
+        }
+
+        refreshRoleCatalog();
+        setInterval(refreshRoleCatalog, 1500);
+
+        document.addEventListener('click', function(e) {
+            const target = e.target;
+            if (target.closest('.skills-overlay-panel')) return;
+            closeAllKnowledgePanels(null);
+        });
+    }
+
     // Actualizar contadores de caracteres
     function updateCharacterCounters() {
         const inputs = document.querySelectorAll('input[bc-input][maxlength]');
@@ -307,7 +641,11 @@
         goToStep: goToStep,
         nextStep: nextStep,
         previousStep: previousStep,
-        getCurrentStep: function() { return currentStep; }
+        getCurrentStep: function() { return currentStep; },
+        setCandidateData: function(data) {
+            knowledgeOverlayState.candidateData = data || {};
+            refreshRoleCatalog();
+        }
     };
 
 })();
