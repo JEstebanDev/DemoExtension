@@ -1,89 +1,108 @@
-# Extensión Excel Stepper Form Filler
+# Excel Stepper Form Filler (MV3 modular)
 
-Extensión de Chrome que permite cargar un archivo Excel (.xlsx) y rellenar automáticamente un formulario con steppers en una página web.
+## Arquitectura
 
-## Características
+Extensión MV3 refactorizada en módulos funcionales bajo `src/`, sin bundler.
 
-- Carga archivos Excel (.xlsx) desde el popup de la extensión
-- Lee datos de usuario: nombre, apellido, edad, ciudad, años de experiencia y rol
-- Rellena automáticamente formularios con steppers
-- Avanza automáticamente por todos los pasos del formulario
+- `popup` solo gestiona UI y orquestación de caso de uso.
+- `content` solo interactúa con el DOM de la página objetivo.
+- `excel` contiene pipeline de datos (`load -> map -> format -> validate`).
+- `shared` centraliza contratos, utilidades y logging.
 
-## Estructura del Proyecto
+## Módulos y Responsabilidad Técnica
 
-```
-Extension/
-├── manifest.json          # Configuración de la extensión (Manifest V3)
-├── popup.html            # Interfaz del popup
-├── popup.css             # Estilos del popup
-├── popup.js              # Lógica para leer Excel y enviar datos
-├── content.js            # Script que rellena el formulario
-├── background.js         # Service worker
-├── index.html            # Página de ejemplo con formulario stepper
-├── styles.css            # Estilos del formulario
-├── script.js             # Funciones del formulario (nextSlide, prevSlide, finishForm)
-└── README.md            # Este archivo
-```
+### `src/background/`
 
-## Instalación
+- `index.js`: service worker MV3.
+- Responsabilidad: ciclo de vida (`onInstalled`) y endpoint de salud (`HEALTH_CHECK`).
+- Interacción: recibe mensajes de runtime y responde estado de worker.
 
-1. Abre Chrome y navega a `chrome://extensions/`
-2. Activa el "Modo de desarrollador" (Developer mode) en la esquina superior derecha
-3. Haz clic en "Cargar extensión sin empaquetar" (Load unpacked)
-4. Selecciona la carpeta del proyecto
+### `src/popup/`
 
-## Uso
+- `index.js`: controlador principal del popup.
+- `state/popupState.js`: estado local (`idle`, `loading`, `ready`, `error`).
+- `services/excelService.js`: delega lectura/validación de Excel a `src/excel/`.
+- `services/contentBridge.js`: puente de mensajería con content script.
 
-1. Abre la página web que contiene el formulario con steppers (por ejemplo, `index.html`)
-2. Haz clic en el icono de la extensión en la barra de herramientas
-3. En el popup, haz clic en "Seleccionar Archivo Excel"
-4. Selecciona un archivo Excel (.xlsx) con las siguientes columnas:
-   - nombre
-   - apellido
-   - edad
-   - ciudad
-   - años de experiencia (o "experiencia")
-   - rol
-5. Verifica los datos leídos en el preview
-6. Haz clic en "Rellenar Formulario"
-7. La extensión rellenará automáticamente todos los campos y avanzará por los steppers
+Interacción:
+- Lee archivo Excel.
+- Obtiene `payload` validado.
+- Envía `FILL_FORM_REQUEST` al content script.
 
-## Archivo de Ejemplo
+### `src/content/`
 
-Se incluye un archivo `ejemplo_datos.csv` que puedes usar como referencia. Para convertirlo a Excel:
-1. Abre el archivo CSV en Excel
-2. Guarda como formato .xlsx
+- `index.js`: router de mensajes (`PING_CONTENT`, `FILL_FORM_REQUEST`).
+- `orchestrator/fillFormFlow.js`: flujo secuencial global de llenado.
+- `orchestrator/navigation.js`: navegación entre pasos y apertura de formulario.
+- `steps/*.js`: lógica aislada por paso.
+- `dom/waiters.js`: espera robusta de elementos.
+- `dom/selectors.js`: resolución por estrategias declarativas.
+- `dom/actions.js`: escritura robusta en inputs/selects y fallbacks.
 
-## Formato del Archivo Excel
+Interacción:
+- Recibe `payload` desde popup.
+- Ejecuta flujo paso a paso sobre DOM objetivo.
+- Retorna resultado normalizado `{ ok, data, error }`.
 
-El archivo Excel debe tener las siguientes columnas (los nombres pueden variar en mayúsculas/minúsculas):
+### `src/excel/`
 
-- **nombre** (o "Nombre", "NOMBRE", "name", "Name")
-- **apellido** (o "Apellido", "APELLIDO", "lastname", "Lastname", "last name")
-- **edad** (o "Edad", "EDAD", "age", "Age")
-- **ciudad** (o "Ciudad", "CIUDAD", "city", "City")
-- **años de experiencia** (o "Años de Experiencia", "experiencia", "Experiencia", "years of experience", "years")
-- **rol** (o "Rol", "ROL", "role", "Role")
+- `core/excelLoader.js`: carga workbook desde `File` o ruta.
+- `core/mappingProcessor.js`: resuelve mapeo JSON recursivo (celda -> campo).
+- `formatters/dateFormatter.js`: transformación de fechas y periodos.
+- `formatters/profileFormatter.js`: seniority, profesión y arreglos categóricos.
+- `validators/requiredFieldsValidator.js`: validación de campos obligatorios.
+- `constants/allowedValues.js`: catálogos permitidos.
+- `index.js`: fachada única de lectura para popup.
 
-La extensión procesará la primera fila de datos del archivo Excel.
+Interacción:
+- Entrada: archivo Excel + mapping path.
+- Salida: objeto normalizado y validado listo para `content`.
 
-## Notas Técnicas
+### `src/shared/`
 
-- La extensión usa SheetJS (xlsx.js) vía CDN para leer archivos Excel
-- El content script se inyecta en todas las páginas (`<all_urls>`)
-- Los campos del formulario deben tener los IDs: `#nombre`, `#apellido`, `#edad`, `#ciudad`, `#experiencia`, `#rol`
-- La página debe tener las funciones `nextSlide()` y `finishForm()` disponibles globalmente
+- `messages.js`: contrato único de acciones y shape de respuesta.
+- `logger.js`: logger por contexto.
+- `errors.js`: errores de dominio.
+- `utils/text.js`: normalización de texto.
+- `utils/time.js`: `sleep` y reintentos.
 
-## Iconos
+Interacción:
+- Es la base reutilizada por `popup`, `content` y `background`.
 
-Nota: El `manifest.json` hace referencia a iconos (`icon16.png`, `icon48.png`, `icon128.png`) que son opcionales. La extensión funcionará sin ellos, pero Chrome mostrará un icono por defecto. Si deseas iconos personalizados:
-- Crea imágenes PNG de 16x16, 48x48 y 128x128 píxeles
-- Nómbralas como `icon16.png`, `icon48.png`, `icon128.png`
-- Colócalas en la raíz del proyecto
+### `config/mapping/`
 
-## Solución de Problemas
+- `example_data.json`: esquema de mapeo Excel -> JSON versionado.
+- Interacción: consumido por `src/excel/core/mappingProcessor.js`.
 
-- Si el formulario no se rellena, verifica que los IDs de los campos coincidan
-- Si los steppers no avanzan, asegúrate de que las funciones `nextSlide()` y `finishForm()` estén disponibles globalmente
-- Revisa la consola del navegador (F12) para ver mensajes de error
+### `scripts/`
+
+- `buildless-sync.ps1`: helper operativo para flujo sin bundler.
+
+## Flujo de Comunicación
+
+1. Popup carga Excel y valida datos.
+2. Popup resuelve pestaña activa e inyección de scripts (si falta).
+3. Popup envía `FILL_FORM_REQUEST` a content.
+4. Content ejecuta `fillFormFlow`.
+5. Content responde con `{ ok, data, error }`.
+
+## Carga de la extensión
+
+1. Abre `chrome://extensions/`.
+2. Activa modo desarrollador.
+3. Carga carpeta `Extension`.
+4. Verifica que `manifest.json` apunte a `src/background/index.js` y scripts `src/content/*`.
+
+## Testing recomendado
+
+- Caso 1: archivo válido -> `fillFormBtn` visible -> formulario completo.
+- Caso 2: faltan obligatorios -> error de validación en popup.
+- Caso 3: página abierta antes de cargar extensión -> `ensureContentScriptLoaded` inyecta correctamente.
+- Caso 4: fallback de selectores ante cambios menores del DOM.
+
+## Compatibilidad y operación
+
+- Implementación buildless: no requiere pipeline de build.
+- Dependencia de lectura Excel: `xlsx.full.min.js`.
+- El mapeo se mantiene desacoplado del código en `config/mapping/`.
 
