@@ -1,6 +1,6 @@
 (() => {
   const AutoFillExt = (globalThis.AutoFillExt = globalThis.AutoFillExt || {});
-  const { fillInputByPlaceholderNth, fillInputById, tryFillField } = AutoFillExt.content.actions;
+  const { fillInputByPlaceholderNth, fillInputById, fillTextareaById, tryFillField } = AutoFillExt.content.actions;
 
   async function fillStep2Experience(data, warnings = []) {
     if (!Array.isArray(data.experiencia)) return warnings;
@@ -28,7 +28,7 @@
           stepName: "step2Experience",
           fieldName: `experiencia[${i}].actividades`,
           warnings,
-          action: () => fillInputById(`mat-input-${2 + i * 3}`, exp.actividades),
+          action: () => fillTextareaById(`mat-input-${2 + i * 3}`, exp.actividades),
         });
       }
       if (exp.periodo_inicio) {

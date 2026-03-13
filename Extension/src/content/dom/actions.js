@@ -115,6 +115,73 @@
     await setInputValueRobust(input, value, 2);
   }
 
+  const SPANISH_MONTHS = {
+    enero: "01", ene: "01",
+    febrero: "02", feb: "02",
+    marzo: "03", mar: "03",
+    abril: "04", abr: "04",
+    mayo: "05", may: "05",
+    junio: "06", jun: "06",
+    julio: "07", jul: "07",
+    agosto: "08", ago: "08",
+    septiembre: "09", sep: "09", sept: "09",
+    octubre: "10", oct: "10",
+    noviembre: "11", nov: "11",
+    diciembre: "12", dic: "12",
+  };
+
+  function normalizeMonthDate(raw) {
+    const str = String(raw || "").trim();
+    // Already MM/YYYY or MM-YYYY
+    if (/^\d{2}[\/\-]\d{4}$/.test(str)) return str.replace("-", "/");
+    // Try "mes YYYY" or "mes. YYYY" (Spanish)
+    const match = str.toLowerCase().match(/^([a-záéíóúüñ]+)\.?\s+(\d{4})$/);
+    if (match) {
+      const monthNum = SPANISH_MONTHS[match[1]];
+      if (monthNum) return `${monthNum}/${match[2]}`;
+    }
+    // Return as-is if unrecognized
+    return str;
+  }
+
+  async function fillDateInputById(id, value) {
+    const input = await waitForElement(`#${id}`, 5000);
+    input.scrollIntoView({ behavior: "smooth", block: "center" });
+    await sleep(80);
+    input.click();
+    input.focus();
+    await sleep(80);
+    // Select all existing content before clearing so we don't append
+    input.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true, key: "a", ctrlKey: true }));
+    await sleep(30);
+    setNativeValue(input, "");
+    input.dispatchEvent(new InputEvent("input", { bubbles: true, data: null, inputType: "deleteContentBackward" }));
+    await sleep(40);
+    const text = normalizeMonthDate(value);
+    for (const char of text) {
+      setNativeValue(input, `${input.value || ""}${char}`);
+      input.dispatchEvent(new InputEvent("input", { bubbles: true, data: char, inputType: "insertText" }));
+      await sleep(30);
+    }
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+    // dateChange is the Angular Material datepicker-specific event
+    input.dispatchEvent(new CustomEvent("dateChange", { bubbles: true }));
+    input.dispatchEvent(new Event("blur", { bubbles: true }));
+    await sleep(120);
+  }
+
+  async function fillTextareaById(id, value) {
+    const textarea = await waitForElement(`textarea#${id}`, 5000);
+    textarea.scrollIntoView({ behavior: "smooth", block: "center" });
+    await sleep(80);
+    textarea.click();
+    textarea.focus();
+    await sleep(80);
+    await typeByChunks(textarea, value);
+    textarea.dispatchEvent(new Event("blur", { bubbles: true }));
+    await sleep(80);
+  }
+
   const PROFILE_ROLE_TO_OPTION = Object.freeze({
     frontend: "DESARROLLOS FRONT-END SENIOR - $17,461,500",
     fullstack: "DESARROLLOS FULL-STACK JUNIOR - $17,001,200",
@@ -210,23 +277,33 @@
     if (!container) throw new Error(`No se encontró contenedor ${containerId}`);
     const input = container.querySelector('input[type="text"]');
     if (!input) throw new Error(`No se encontró input en ${containerId}`);
-    await setInputValueRobust(input, value, 2);
-    await sleep(200);
-    const items = container.querySelectorAll(".bc-input-select-item");
+    
     const mode = options.mode || "default";
 
     if (mode === "firstMatch") {
+      // Resolver el mapeo ANTES de escribir en el input para evitar filtrado incorrecto
       const roleKey = resolveProfileRoleKey(value);
       const preferredOption = containerId === "profileCandidate" && roleKey ? PROFILE_ROLE_TO_OPTION[roleKey] : "";
-      const searchValue = preferredOption || value;
-      const selectedItem = findFirstRobustSelectItem(items, searchValue, preferredOption);
+      // Usar preferredOption para el input si existe, sino usar el valor original
+      const inputValue = preferredOption || value;
+      
+      await setInputValueRobust(input, inputValue, 2);
+      await sleep(200);
+      const items = container.querySelectorAll(".bc-input-select-item");
+      
+      const selectedItem = findFirstRobustSelectItem(items, inputValue, preferredOption);
       if (!selectedItem) {
-        throw new Error(`No se encontró opción compatible en ${containerId} para "${searchValue}"`);
+        throw new Error(`No se encontró opción compatible en ${containerId} para "${inputValue}"`);
       }
       selectedItem.click();
       await sleep(250);
       return;
     }
+
+    // Modo default: comportamiento original
+    await setInputValueRobust(input, value, 2);
+    await sleep(200);
+    const items = container.querySelectorAll(".bc-input-select-item");
 
     for (const item of items) {
       const text = (item.querySelector(".bc-span-single")?.textContent || "").trim();
@@ -243,8 +320,11 @@
     let input = document.querySelector('input[aria-label*="Nivel Academico"], input[aria-label*="Nivel academico"]');
     if (!input) input = document.querySelector("#levelAcademy-input, #levelAcademy input[type='text']");
     if (!input) throw new Error("No se encontró dropdown nivel académico");
-    input.click();
-    await sleep(350);
+    
+    // Escribir el valor en el input para filtrar las opciones
+    await setInputValueRobust(input, value, 2);
+    await sleep(300);
+    
     const parent = input.closest(".bc-input-select");
     const items = parent ? parent.querySelectorAll(".bc-input-select-item") : [];
     for (const item of items) {
@@ -256,6 +336,7 @@
         return;
       }
     }
+    throw new Error(`No se encontró opción de nivel académico: "${value}"`);
   }
 
   function toUniqueTechnologyList(rawValues, maxItems = 4) {
@@ -472,6 +553,8 @@
     fillInputByPlaceholder,
     fillInputByPlaceholderNth,
     fillInputById,
+    fillTextareaById,
+    fillDateInputById,
     fillBcInputSelect,
     fillLevelAcademyDropdown,
     selectTechnologiesFromOverlay,

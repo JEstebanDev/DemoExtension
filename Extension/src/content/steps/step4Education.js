@@ -1,6 +1,6 @@
 (() => {
   const AutoFillExt = (globalThis.AutoFillExt = globalThis.AutoFillExt || {});
-  const { fillLevelAcademyDropdown, fillInputByPlaceholderNth, fillInputByPlaceholder, fillInputById, tryFillField } = AutoFillExt.content.actions;
+  const { fillLevelAcademyDropdown, fillInputByPlaceholderNth, fillInputByPlaceholder, fillInputById, fillDateInputById, tryFillField } = AutoFillExt.content.actions;
 
   async function fillStep4Education(data, warnings = []) {
     if (data.profesion) {
@@ -34,7 +34,7 @@
         stepName: "step4Education",
         fieldName: "cursos_certificaciones[0].fecha_obtencion",
         warnings,
-        action: () => fillInputById("mat-input-9", cursos[0].fecha_obtencion),
+        action: () => fillDateInputById("mat-input-9", cursos[0].fecha_obtencion),
       });
     }
     for (let i = 1; i < Math.min(cursos.length, 4); i += 1) {
@@ -60,7 +60,7 @@
           stepName: "step4Education",
           fieldName: `cursos_certificaciones[${i}].fecha_obtencion`,
           warnings,
-          action: () => fillInputById(`mat-input-${9 + i}`, curso.fecha_obtencion),
+          action: () => fillDateInputById(`mat-input-${9 + i}`, curso.fecha_obtencion),
         });
       }
     }
