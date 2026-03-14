@@ -83,7 +83,7 @@
 
   async function fillInputWithFallbacks(fieldName, value, strategies, options = {}) {
     const retriesPerStrategy = options.retriesPerStrategy || 2;
-    const timeoutPerStrategy = options.timeoutPerStrategy || 3500;
+    const timeoutPerStrategy = options.timeoutPerStrategy || 3000;
     for (const strategy of strategies) {
       try {
         await retry(async () => {
@@ -288,7 +288,7 @@
       const inputValue = preferredOption || value;
       
       await setInputValueRobust(input, inputValue, 2);
-      await sleep(200);
+      await sleep(160);
       const items = container.querySelectorAll(".bc-input-select-item");
       
       const selectedItem = findFirstRobustSelectItem(items, inputValue, preferredOption);
@@ -296,13 +296,13 @@
         throw new Error(`No se encontró opción compatible en ${containerId} para "${inputValue}"`);
       }
       selectedItem.click();
-      await sleep(250);
+      await sleep(200);
       return;
     }
 
     // Modo default: comportamiento original
     await setInputValueRobust(input, value, 2);
-    await sleep(200);
+    await sleep(160);
     const items = container.querySelectorAll(".bc-input-select-item");
 
     for (const item of items) {
@@ -310,7 +310,7 @@
       if (!text) continue;
       if (text.toUpperCase() === String(value).toUpperCase() || text.toUpperCase().includes(String(value).toUpperCase())) {
         item.click();
-        await sleep(250);
+        await sleep(200);
         break;
       }
     }
@@ -323,7 +323,7 @@
     
     // Escribir el valor en el input para filtrar las opciones
     await setInputValueRobust(input, value, 2);
-    await sleep(300);
+    await sleep(240);
     
     const parent = input.closest(".bc-input-select");
     const items = parent ? parent.querySelectorAll(".bc-input-select-item") : [];
@@ -332,7 +332,7 @@
       if (!text) continue;
       if (text.toUpperCase() === String(value).toUpperCase() || text.toUpperCase().includes(String(value).toUpperCase())) {
         item.click();
-        await sleep(200);
+        await sleep(160);
         return;
       }
     }
@@ -422,12 +422,12 @@
     return getByRoleOptionByName(targetValue, true) || getByRoleOptionByName(targetValue, false);
   }
 
-  async function waitOverlayOption(targetValue, timeout = 3000) {
+  async function waitOverlayOption(targetValue, timeout = 2600) {
     const start = Date.now();
     while (Date.now() - start < timeout) {
       const option = findBestOverlayOption(targetValue);
       if (option) return option;
-      await sleep(120);
+      await sleep(100);
     }
     return null;
   }
@@ -508,12 +508,12 @@
       input.scrollIntoView({ behavior: "smooth", block: "center" });
       input.click();
       input.focus();
-      await sleep(120);
+      await sleep(100);
       setNativeValue(input, tech);
       dispatchValueEvents(input);
-      await sleep(120);
+      await sleep(100);
 
-      const option = await waitOverlayOption(tech, 2500);
+      const option = await waitOverlayOption(tech, 2200);
       if (!option) {
         missing.push(tech);
         if (warnings) warnings.push({ step: stepName, field: fieldName, message: `No aparece en overlay: ${tech}` });
@@ -523,7 +523,7 @@
       option.scrollIntoView({ behavior: "smooth", block: "nearest" });
       option.click();
       selected += 1;
-      await sleep(220);
+      await sleep(180);
       if (selected >= maxItems) break;
     }
 

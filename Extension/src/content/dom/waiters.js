@@ -13,14 +13,14 @@
     return !!element && !element.disabled && !element.readOnly;
   }
 
-  async function waitForElement(selector, timeout = 5000, options = {}) {
+  async function waitForElement(selector, timeout = 4200, options = {}) {
     const start = Date.now();
     while (Date.now() - start < timeout) {
       const element = document.querySelector(selector);
       if (element && (!options.visible || isElementVisible(element)) && (!options.interactive || isElementInteractable(element))) {
         return element;
       }
-      await sleep(100);
+      await sleep(80);
     }
     throw new Error(`Timeout esperando elemento: ${selector}`);
   }

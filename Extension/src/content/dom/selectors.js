@@ -35,7 +35,7 @@
     return null;
   }
 
-  async function resolveInputByStrategy(strategy, timeoutPerStrategy = 3500) {
+  async function resolveInputByStrategy(strategy, timeoutPerStrategy = 3000) {
     const type = strategy?.type;
     const value = strategy?.value;
     const inputType = strategy?.inputType;
@@ -52,7 +52,7 @@
           throw new Error(`Se encontraron ${candidates.length} spinbutton(s); se esperaba solo uno`);
         }
 
-        await sleep(120);
+        await sleep(100);
       }
       throw new Error("No se encontró spinbutton único");
     }
@@ -70,7 +70,7 @@
           const okType = !inputType || input.type === inputType;
           if (okType && normalizeText(input.getAttribute("placeholder")).includes(searchText) && isElementVisible(input) && isElementInteractable(input)) return input;
         }
-        await sleep(120);
+        await sleep(100);
       }
       throw new Error(`No se encontró input por placeholder parcial "${value}"`);
     }
@@ -79,7 +79,7 @@
       while (Date.now() - start < timeoutPerStrategy) {
         const candidate = findInputByLabelContains(value, inputType);
         if (candidate && isElementVisible(candidate) && isElementInteractable(candidate)) return candidate;
-        await sleep(120);
+        await sleep(100);
       }
       throw new Error(`No se encontró input por label "${value}"`);
     }
