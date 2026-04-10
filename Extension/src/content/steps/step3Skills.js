@@ -1,9 +1,10 @@
 (() => {
   const AutoFillExt = (globalThis.AutoFillExt = globalThis.AutoFillExt || {});
-  const { normalizeText } = AutoFillExt.text;
+  const { normalizeText, normalizeRoleKey } = AutoFillExt.text;
   const { selectTechnologiesFromOverlay, tryFillField } = AutoFillExt.content.actions;
 
   const MAX_ITEMS_PER_CATEGORY = 4;
+  const catalogIndexCache = new WeakMap();
 
   const ROLE_TECH_CATALOG = Object.freeze({
     frontend: Object.freeze({
@@ -413,6 +414,58 @@
       .filter(Boolean);
   }
 
+  function prepareMatchValue(value) {
+    const normalized = normalizeForMatch(value);
+    return {
+      normalized,
+      compact: normalized.replace(/\s+/g, ""),
+      tokens: normalized ? normalized.split(" ").filter(Boolean) : [],
+    };
+  }
+
+  function buildCatalogIndex(catalogValues) {
+    const entries = [];
+    const exactMap = new Map();
+    const compactMap = new Map();
+    const tokenMap = new Map();
+
+    for (const candidate of catalogValues) {
+      const prepared = prepareMatchValue(candidate);
+      if (!prepared.normalized) continue;
+
+      const entry = {
+        value: candidate,
+        normalized: prepared.normalized,
+        compact: prepared.compact,
+        tokens: prepared.tokens,
+      };
+
+      entries.push(entry);
+      if (!exactMap.has(entry.normalized)) exactMap.set(entry.normalized, entry);
+      if (entry.compact && !compactMap.has(entry.compact)) compactMap.set(entry.compact, entry);
+
+      for (const token of entry.tokens) {
+        if (!tokenMap.has(token)) tokenMap.set(token, []);
+        tokenMap.get(token).push(entry);
+      }
+    }
+
+    return { entries, exactMap, compactMap, tokenMap };
+  }
+
+  function getCatalogIndex(catalogValues) {
+    if (!Array.isArray(catalogValues) || !catalogValues.length) {
+      return { entries: [], exactMap: new Map(), compactMap: new Map(), tokenMap: new Map() };
+    }
+
+    const cached = catalogIndexCache.get(catalogValues);
+    if (cached) return cached;
+
+    const created = buildCatalogIndex(catalogValues);
+    catalogIndexCache.set(catalogValues, created);
+    return created;
+  }
+
   function parseTechnologies(value, maxItems = 0) {
     const source = Array.isArray(value) ? value : String(value || "").split(",");
     const out = [];
@@ -430,7 +483,7 @@
   }
 
   function resolveRoleKey(rawRole) {
-    const role = normalizeForMatch(rawRole);
+    const role = normalizeRoleKey(rawRole) || normalizeForMatch(rawRole);
     if (!role) return "";
     if (role.includes("automat")) return "automatizador";
     if (role.includes("full")) return "fullstack";
@@ -443,24 +496,29 @@
     return Object.prototype.hasOwnProperty.call(ROLE_TECH_CATALOG, role) ? role : "";
   }
 
-  function scoreCatalogCandidate(rawInput, catalogValue) {
-    const rawNorm = normalizeForMatch(rawInput);
-    const catNorm = normalizeForMatch(catalogValue);
+  function scoreCatalogCandidate(rawPrepared, catalogEntry) {
+    const rawNorm = rawPrepared.normalized;
+    const catNorm = catalogEntry.normalized;
     if (!rawNorm || !catNorm) return 0;
 
     if (rawNorm === catNorm) return 100;
 
-    const rawCompact = compactForMatch(rawInput);
-    const catCompact = compactForMatch(catalogValue);
+    const rawCompact = rawPrepared.compact;
+    const catCompact = catalogEntry.compact;
     if (rawCompact && catCompact && rawCompact === catCompact) return 96;
 
     let score = 0;
-    if (catNorm.includes(rawNorm) || rawNorm.includes(catNorm)) score += 82;
+    if (catNorm.includes(rawNorm) || rawNorm.includes(catNorm)) {
+      score += 82;
+    } else if (rawCompact && catCompact && (catCompact.includes(rawCompact) || rawCompact.includes(catCompact))) {
+      score += 76;
+    }
 
-    const rawTokens = tokenizeForMatch(rawInput);
-    const catTokens = tokenizeForMatch(catalogValue);
+    const rawTokens = rawPrepared.tokens;
+    const catTokens = catalogEntry.tokens;
     if (rawTokens.length && catTokens.length) {
-      const matchedTokens = rawTokens.filter((token) => catTokens.includes(token)).length;
+      const catTokenSet = new Set(catTokens);
+      const matchedTokens = rawTokens.filter((token) => catTokenSet.has(token)).length;
       const coverage = matchedTokens / rawTokens.length;
       const density = matchedTokens / catTokens.length;
       score += Math.round(coverage * 14) + Math.round(density * 8);
@@ -469,28 +527,78 @@
     return score;
   }
 
+  function findDirectCatalogMatch(index, rawPrepared, selectedNorms) {
+    const exact = index.exactMap.get(rawPrepared.normalized);
+    if (exact && !selectedNorms.has(exact.normalized)) return { entry: exact, score: 100 };
+
+    const compact = index.compactMap.get(rawPrepared.compact);
+    if (compact && !selectedNorms.has(compact.normalized)) return { entry: compact, score: 96 };
+
+    return null;
+  }
+
+  function collectCatalogCandidates(index, rawPrepared, selectedNorms) {
+    const candidates = new Map();
+
+    for (const entry of index.entries) {
+      if (selectedNorms.has(entry.normalized)) continue;
+      if (entry.normalized.includes(rawPrepared.normalized) || rawPrepared.normalized.includes(entry.normalized)) {
+        candidates.set(entry.normalized, entry);
+      }
+    }
+
+    if (!candidates.size && rawPrepared.compact) {
+      for (const entry of index.entries) {
+        if (selectedNorms.has(entry.normalized) || !entry.compact) continue;
+        if (entry.compact.includes(rawPrepared.compact) || rawPrepared.compact.includes(entry.compact)) {
+          candidates.set(entry.normalized, entry);
+        }
+      }
+    }
+
+    if (!candidates.size && rawPrepared.tokens.length) {
+      for (const token of rawPrepared.tokens) {
+        const tokenEntries = index.tokenMap.get(token);
+        if (!tokenEntries) continue;
+        for (const entry of tokenEntries) {
+          if (selectedNorms.has(entry.normalized)) continue;
+          candidates.set(entry.normalized, entry);
+        }
+      }
+    }
+
+    if (candidates.size) return Array.from(candidates.values());
+    return index.entries.filter((entry) => !selectedNorms.has(entry.normalized));
+  }
+
   function mapRawToCatalogValues(rawValues, catalogValues, warnings, fieldName) {
     const values = parseTechnologies(rawValues);
     if (!values.length || !Array.isArray(catalogValues) || !catalogValues.length) return [];
 
+    const index = getCatalogIndex(catalogValues);
     const selected = [];
     const selectedNorms = new Set();
 
     for (const input of values) {
-      let bestValue = "";
-      let bestScore = 0;
+      const rawPrepared = prepareMatchValue(input);
+      if (!rawPrepared.normalized) continue;
 
-      for (const candidate of catalogValues) {
-        const candidateNorm = normalizeForMatch(candidate);
-        if (!candidateNorm || selectedNorms.has(candidateNorm)) continue;
-        const score = scoreCatalogCandidate(input, candidate);
-        if (score > bestScore) {
-          bestScore = score;
-          bestValue = candidate;
+      const directMatch = findDirectCatalogMatch(index, rawPrepared, selectedNorms);
+      let bestEntry = directMatch?.entry || null;
+      let bestScore = directMatch?.score || 0;
+
+      if (!bestEntry) {
+        const candidates = collectCatalogCandidates(index, rawPrepared, selectedNorms);
+        for (const candidate of candidates) {
+          const score = scoreCatalogCandidate(rawPrepared, candidate);
+          if (score > bestScore) {
+            bestScore = score;
+            bestEntry = candidate;
+          }
         }
       }
 
-      if (!bestValue || bestScore < 70) {
+      if (!bestEntry || bestScore < 70) {
         if (Array.isArray(warnings)) {
           warnings.push({
             step: "step3Skills",
@@ -501,10 +609,9 @@
         continue;
       }
 
-      const norm = normalizeForMatch(bestValue);
-      if (!norm || selectedNorms.has(norm)) continue;
-      selectedNorms.add(norm);
-      selected.push(bestValue);
+      if (selectedNorms.has(bestEntry.normalized)) continue;
+      selectedNorms.add(bestEntry.normalized);
+      selected.push(bestEntry.value);
       if (selected.length >= MAX_ITEMS_PER_CATEGORY) break;
     }
 
