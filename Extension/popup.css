@@ -9,7 +9,7 @@ body {
     width: 380px;
     min-height: 200px;
     padding: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #213f80;
 }
 
 .container {
@@ -19,10 +19,21 @@ body {
 }
 
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #213f80;
     padding: 20px;
     text-align: center;
     color: white;
+    position: relative;
+}
+
+.header-logo {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
 }
 
 .icon-wrapper {
@@ -97,13 +108,13 @@ h3 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #213f80;
     color: white;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 12px rgba(33, 63, 128, 0.4);
 }
 
 .btn-primary:active {
