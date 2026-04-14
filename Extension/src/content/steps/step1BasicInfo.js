@@ -1,6 +1,5 @@
 (() => {
   const AutoFillExt = (globalThis.AutoFillExt = globalThis.AutoFillExt || {});
-  const { sleep } = AutoFillExt.time;
   const { fillInputByPlaceholder, fillInputWithFallbacks, fillBcInputSelect, tryFillField } = AutoFillExt.content.actions;
 
   async function fillStep1BasicInfo(data, warnings = []) {
@@ -97,10 +96,9 @@
         stepName: "step1BasicInfo",
         fieldName: "rol",
         warnings,
-        action: () => fillBcInputSelect("profileCandidate", data.rol, { mode: "firstMatch" }),
+        action: () => fillBcInputSelect("profileCandidate", data.rol, { mode: "firstMatch", nivelL: data.nivel_L }),
       });
     }
-    await sleep(250);
     return warnings;
   }
 

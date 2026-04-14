@@ -20,7 +20,7 @@
       if (element && (!options.visible || isElementVisible(element)) && (!options.interactive || isElementInteractable(element))) {
         return element;
       }
-      await sleep(80);
+      await sleep(50); // reducido de 80ms — SPAs modernas renderizan en <50ms
     }
     throw new Error(`Timeout esperando elemento: ${selector}`);
   }
