@@ -5,6 +5,7 @@
   Excel.allowedValues = Object.freeze({
     SENIORITY_LEVELS: ["JUNIOR", "SEMI-SENIOR", "SENIOR"],
     LANGUAGES: [
+      "C++",
       "Java SE",
       "Java",
       "Python",
@@ -28,6 +29,7 @@
       "Kotlin",
       "Objective C",
       "Swift (Lenguaje)",
+      "Finacle Scripting",
     ],
     DATABASES: ["SQL Server", "PostgreSQL", "MySQL", "DynamoDB", "DB2", "IBM Cloudant", "MongoDB", "ORACLE", "REDIS", "Couchbase Mobile", "LevelDB", "SQLite"],
     APPLICATIONS: ["Artifactory", "SWIFT", "Amazon EC2", "Micro Focus Extra! X-treme (MyExtra)", "DataPower", "Power Apps", "DYNATRACE"],
@@ -41,6 +43,7 @@
       "Express",
       "Flask",
       "Flutter",
+      "FRAMEWORK DE AUTOMATIZACION: SERENITY",
       "Karate Framework",
       "Next.js (SSR)",
       "No SQL",
@@ -59,6 +62,8 @@
       "Winium",
     ],
     PLATFORMS: [
+      "AIX",
+      "CLEAR PATH",
       "Docker",
       "Kubernetes",
       "Apache Kafka",
@@ -105,6 +110,9 @@
       "Grafana",
       "Thanos",
       "POWER AUTOMATE",
+      "Google Analitics",
+      "I-reports IDE",
+      "SQL Developer",
     ],
     OTHERS: [
       "AMQP",
@@ -170,6 +178,14 @@
       "Metodologias agiles",
       "Protocolos de comunicacion segura (SSL/TLS/FTP/HTTPS)",
       "Automatizacion",
+      "Finacle FIUI",
+      "Finacle Pagos",
+      "Finacle préstamos",
+      "Finacle productos trade",
+      "Gherkin / Cucumber",
+      "Pruebas de Performance",
+      "SOAP",
+      "WEB SECURITY AND THE OWASP TOP 10: THE BIG PICTURE",
     ],
   });
 })();

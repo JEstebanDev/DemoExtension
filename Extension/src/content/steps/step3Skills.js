@@ -27,23 +27,26 @@
         "PWA",
         "Service Worker",
       ]),
-      herramienta: Object.freeze(["Jscrambler", "NPM", "WebPack"]),
+      herramienta: Object.freeze(["Google Analitics", "Jscrambler", "NPM", "WebPack"]),
       plataforma: Object.freeze(["DOCKER", "Kubernetes"]),
       aplicacion: Object.freeze([]),
       baseDeDatos: Object.freeze([]),
     }),
     automatizador: Object.freeze({
       lenguaje: Object.freeze(["Conceptos generales Programacion reactiva", "Java", "Python", "SQL", "XPATH"]),
-      framework: Object.freeze(["Playwright", "BDD Framework", "Data Driven Framework", "Karate Framework", "Winium"]),
+      framework: Object.freeze(["Playwright", "BDD Framework", "Data Driven Framework", "FRAMEWORK DE AUTOMATIZACION: SERENITY", "Karate Framework", "Winium"]),
       otros: Object.freeze([
         "Arquitectura de microservicios",
         "Murex AWS Essentials",
         "BDD (Gherkin / Serenity)",
+        "DevOps",
         "DevOps CI",
         "DevOps CT",
+        "Gherkin / Cucumber",
         "Patron de diseno ScreenPlay",
         "Pruebas Unitarias",
         "REST",
+        "SOAP",
         "SOLID",
         "WinAppDriver",
       ]),
@@ -62,7 +65,7 @@
       baseDeDatos: Object.freeze(["DynamoDB", "DB2", "MongoDB", "MYSQL", "ORACLE", "PostgreSQL", "SQL Server"]),
     }),
     backend: Object.freeze({
-      lenguaje: Object.freeze(["C# (.NET Framework)", "CL", "COBOL", "Dart", "Elixir", "Java", "Python", "RPG/ILE"]),
+      lenguaje: Object.freeze(["C# (.NET Framework)", "CL", "COBOL", "Dart", "Elixir", "GO", "Java", "JavaScript", "Python", "RPG/ILE"]),
       framework: Object.freeze([
         "ASP MVC",
         "Express",
@@ -87,8 +90,11 @@
         "OpenAPI",
         "OpenID",
         "OWASP",
+        "Pruebas de Performance",
+        "Pruebas Unitarias",
         "SOLID",
         "Sterling",
+        "WEB SECURITY AND THE OWASP TOP 10: THE BIG PICTURE",
       ]),
       herramienta: Object.freeze([
         "Analisis Estatico (SonarQube)",
@@ -108,6 +114,7 @@
       plataforma: Object.freeze([
         "Apache Kafka",
         "Apache Tomcat",
+        "CLEAR PATH",
         "DOCKER",
         "IIS",
         "Kubernetes",
@@ -122,7 +129,7 @@
       baseDeDatos: Object.freeze(["DynamoDB", "DB2", "IBM Cloudant", "MongoDB", "MYSQL", "ORACLE", "PostgreSQL", "REDIS", "SQL Server"]),
     }),
     fullstack: Object.freeze({
-      lenguaje: Object.freeze([]),
+      lenguaje: Object.freeze(["Java", "Python", "SQL", "XPATH"]),
       framework: Object.freeze([
         "Angular",
         "ASP MVC",
@@ -140,9 +147,31 @@
         "Spring Framework",
         "Universal (SSR)",
         "Django",
+        "BDD Framework",
+        "Data Driven Framework",
+        "FRAMEWORK DE AUTOMATIZACION: SERENITY",
+        "Karate Framework",
+        "Playwright",
+        "Winium",
       ]),
-      otros: Object.freeze([]),
-      herramienta: Object.freeze([]),
+      otros: Object.freeze([
+        "BDD (Gherkin / Serenity)",
+        "DevOps",
+        "Gherkin / Cucumber",
+        "Patron de diseno ScreenPlay",
+        "REST",
+        "SOAP",
+        "SOLID",
+        "WinAppDriver",
+      ]),
+      herramienta: Object.freeze([
+        "Analisis Estatico (SonarQube)",
+        "Appium",
+        "Git",
+        "GraphQL",
+        "Postman",
+        "Selenium",
+      ]),
       plataforma: Object.freeze([
         "Apache Kafka",
         "Apache Tomcat",
@@ -155,8 +184,10 @@
         "SPARK",
         "WAS",
         "WMQ",
+        "AWS RDS",
+        "Kobiton",
       ]),
-      aplicacion: Object.freeze(["Artifactory"]),
+      aplicacion: Object.freeze(["Artifactory", "Micro Focus Extra! X-treme (MyExtra)"]),
       baseDeDatos: Object.freeze(["DynamoDB", "DB2", "IBM Cloudant", "MongoDB", "MYSQL", "ORACLE", "PostgreSQL", "REDIS", "SQL Server"]),
     }),
     mobile: Object.freeze({
@@ -334,6 +365,15 @@
       aplicacion: Object.freeze(["DataPower", "Power Apps"]),
       baseDeDatos: Object.freeze(["SQL Server"]),
     }),
+    finacle: Object.freeze({
+      lenguaje: Object.freeze(["C++", "Finacle Scripting", "Java"]),
+      framework: Object.freeze([]),
+      otros: Object.freeze(["Finacle FIUI", "Finacle Pagos", "Finacle préstamos", "Finacle productos trade"]),
+      herramienta: Object.freeze(["I-reports IDE", "SQL Developer"]),
+      plataforma: Object.freeze(["AIX"]),
+      aplicacion: Object.freeze([]),
+      baseDeDatos: Object.freeze(["ORACLE"]),
+    }),
   });
 
   const FIELD_CONFIG = Object.freeze([
@@ -493,6 +533,7 @@
     if (role.includes("devops")) return "devops";
     if (role.includes("arquitect")) return "arquitectura";
     if (role.includes("analis")) return "analista";
+    if (role.includes("finacl")) return "finacle";
     return Object.prototype.hasOwnProperty.call(ROLE_TECH_CATALOG, role) ? role : "";
   }
 
